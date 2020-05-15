@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- <link rel="icon" href="../../favicon.ico"> -->
+    <link rel="canonical" href=".">
+
+    <title>Starter Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="./lib/bootstrap-3.4.1/css/bootstrap.min.css" >
+    <!--<link rel="stylesheet" href="./lib/bootstrap-3.4.1/css/bootstrap-theme.min.css" > -->
+    
+    <!-- Optional Bootstrap Theme -->
+  </head>
+
+  <script>
+
+    function init() {
+      // getLoadedBehaviors
+      // getDefaultBehaviors
+      // getInstalledBehaviors
+      send("ALBehaviorManager", ["getInstalledBehaviors"], function(data) {
+        var s = "{'data':" + data + "}";
+        const searchRegExp = new RegExp("'", 'g');
+        s = s.replace(searchRegExp,"\"");
+        console.log(s);
+        var obj = JSON.parse(s);
+        console.log(obj);
+        
+        var list = $("#animations")
+        for(a of obj['data']) {
+          if(a.startsWith('animations')) {
+            list.append('<li class="list-group-item"><a href="#" onclick="behavior(\'' + a + '\'); return false"><span class="glyphicon glyphicon-play"></span> ' + a +'</a></li>')
+          }
+        }
+        
+      });
+    }
+    
+    // runBehavior
+    function behavior(path) {
+      send("ALBehaviorManager", ["startBehavior", path]);
+    }
+    
+    function behavior_stop() {
+      send("ALBehaviorManager", ["stopAllBehaviors"]);
+    }
+    
+    function say(message) {
+      send("ALTextToSpeech", ["say", message]);
+    }
+    
+    function sayanimated(message) {
+      send("ALAnimatedSpeech", ["say", message, "{\"speakingMovementMode\":contextual}"]);
+    }
+    
+    function send(proxy, call, handler) {
+      var xhr = new XMLHttpRequest();
+
+      var data = JSON.stringify({
+        "proxy": proxy,
+        "call": call
+      });
+      
+      xhr.open("POST", "naoqi", true);
+      
+      xhr.onload = function (e) {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            console.log(xhr.responseText);
+            
+            if(typeof handler !== "undefined") {
+              handler(xhr.responseText);
+            }
+          } else {
+            console.error(xhr.statusText);
+          }
+        }
+      };
+      
+      xhr.onerror = function (e) {
+        console.error(xhr.statusText);
+      };
+      
+      xhr.setRequestHeader("Content-Type", "application/json");
+      xhr.send(data);
+      
+    }
+    
+    document.addEventListener('keydown', doKeyDown, true);
+    
+    function doKeyDown(e){
+    
+			if (e.keyCode == 87) {
+				console.log("up");
+			}
+
+			if (e.keyCode == 83) {
+				console.log("down");
+			}
+
+			if (e.keyCode == 65) {
+				console.log("left");
+			}
+
+			if (e.keyCode == 68) {
+				console.log("right");
+			}
+
+		}
+    
+    </script>
+  
+  <body onload="init()">
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1>Remote Pepper Control</h1>
+      </div>
+
+      <!-- say -->
+      <div class="panel panel-primary">
+        <div class="panel-heading">Text to Speech</div>
+        <div class="panel-body">
+          <textarea cols="50" rows="3" id="text">Hello Everybody!</textarea>
+          <p><a class="btn btn-success" href="#" role="button" onclick="say(document.getElementById('text').value)">
+            <span class="glyphicon glyphicon-play" aria-hidden="true"></span> SAY
+          </a></p>
+        </div>
+      </div>
+      
+      <!-- animated say -->
+      <div class="panel panel-primary">
+        <div class="panel-heading">Animated Speech</div>
+        <div class="panel-body">
+          <textarea cols="50" rows="3" id="atext">Hello Everybody!</textarea>
+          <p><a class="btn btn-success" href="#" role="button" onclick="sayanimated(document.getElementById('atext').value)">
+            <span class="glyphicon glyphicon-play" aria-hidden="true"></span> SAY
+          </a></p>
+        </div>
+      </div>
+      
+      <div class="panel panel-primary">
+        <div class="panel-heading">Animations</div>
+        <div class="panel-body" style="max-height: 30em; overflow-y: auto;">
+          <ul class="list-group" id="animations"><ul>
+        </div>
+        <div class="panel-footer">
+          <p><a class="btn btn-danger" href="#" role="button" onclick="behavior_stop()">
+            <span class="glyphicon glyphicon-stop" aria-hidden="true"></span> STOP ALL BEHAVIORS
+          </a></p>
+        </div>
+        </div>
+      </div>
+      
+      <div class="panel panel-primary">
+        <div class="panel-heading">Move</div>
+        <div class="panel-body" style="max-height: 30em; overflow-y: auto;">
+          
+          <CANVAS WIDTH="500" HEIGHT="400" ID="canvas_1" tabindex="0">
+            Canvas tag not supported
+          </CANVAS>
+          
+        </div>
+        </div>
+      </div>
+  
+    </div><!-- /.container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="./lib/jquery-3.5.1.slim.min.js"></script>
+    <!--<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>-->
+    <script src="./lib/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+  </body>
+</html>
