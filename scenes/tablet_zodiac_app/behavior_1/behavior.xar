@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?><ChoregrapheProject xmlns="http://www.aldebaran-robotics.com/schema/choregraphe/project.xsd" xar_version="3"><Box name="root" id="-1" localization="8" tooltip="Root box of Choregraphe&apos;s behavior. Highest level possible." x="0" y="0"><bitmap>media/images/box/root.png</bitmap><script language="4"><content><![CDATA[]]></content></script><Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" /><Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" /><Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" /><Input name="FaceDetected" type="0" type_size="1" nature="4" stm_value_name="FaceDetected" inner="1" tooltip="FaceDetected desc" id="4" /><Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="5" /><Timeline enable="0"><BehaviorLayer name="behavior_layer1"><BehaviorKeyframe name="keyframe1" index="1"><Diagram scale="70.7107"><Box name="Show Zodiac App" id="11" localization="8" tooltip="Enter description here" x="328" y="30"><bitmap>media/images/box/box-diagram.png</bitmap><script language="4"><content><![CDATA[]]></content></script><Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" /><Input name="Hide Web View_onStart" type="1" type_size="1" nature="2" inner="0" tooltip="This input has been automatically generated&#x0A;by converting several boxes into a single box." id="2" /><Timeline enable="0"><BehaviorLayer name="behavior_layer1"><BehaviorKeyframe name="keyframe1" index="1"><Diagram><Box name="Hide Web View" id="4" localization="8" tooltip="Hides the webview (html content) on the tablet, behind a generic cover&#x0A;&#x0A;V1.0.0&#x0A;" x="99" y="47"><bitmap>media/images/box/internet/internet.png</bitmap><script language="4"><content><![CDATA[
+<?xml version="1.0" encoding="UTF-8" ?><ChoregrapheProject xmlns="http://www.aldebaran-robotics.com/schema/choregraphe/project.xsd" xar_version="3"><Box name="root" id="-1" localization="8" tooltip="Root box of Choregraphe&apos;s behavior. Highest level possible." x="0" y="0"><bitmap>media/images/box/root.png</bitmap><script language="4"><content><![CDATA[]]></content></script><Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" /><Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" /><Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" /><Input name="FaceDetected" type="0" type_size="1" nature="4" stm_value_name="FaceDetected" inner="1" tooltip="FaceDetected desc" id="4" /><Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="5" /><Timeline enable="0"><BehaviorLayer name="behavior_layer1"><BehaviorKeyframe name="keyframe1" index="1"><Diagram scale="70.7107"><Box name="Show Zodiac App" id="11" localization="8" tooltip="Enter description here" x="350" y="35"><bitmap>media/images/box/box-diagram.png</bitmap><script language="4"><content><![CDATA[]]></content></script><Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" /><Input name="Hide Web View_onStart" type="1" type_size="1" nature="2" inner="0" tooltip="This input has been automatically generated&#x0A;by converting several boxes into a single box." id="2" /><Timeline enable="0"><BehaviorLayer name="behavior_layer1"><BehaviorKeyframe name="keyframe1" index="1"><Diagram><Box name="Hide Web View" id="4" localization="8" tooltip="Hides the webview (html content) on the tablet, behind a generic cover&#x0A;&#x0A;V1.0.0&#x0A;" x="99" y="47"><bitmap>media/images/box/internet/internet.png</bitmap><script language="4"><content><![CDATA[
 
 class MyClass(GeneratedClass):
 
@@ -287,7 +287,7 @@ class MyClass(GeneratedClass):
 		GeneratedClass.__init__(self)
 
 	def onInput_onStart(self):
-		self.onStopped("done")]]></content></script><pluginContent><text><![CDATA[done]]></text></pluginContent><Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when Diagram is loaded." id="1" /><Input name="onStart" type="1" type_size="1" nature="1" inner="0" tooltip="To send the text on the output." id="2" /><Output name="onStopped" type="3" type_size="1" nature="2" inner="0" tooltip="The text you entered." id="3" /></Box><Link inputowner="5" indexofinput="2" outputowner="4" indexofoutput="3" /><Link inputowner="6" indexofinput="2" outputowner="5" indexofoutput="6" /><Link inputowner="3" indexofinput="2" outputowner="6" indexofoutput="3" /><Link inputowner="10" indexofinput="2" outputowner="3" indexofoutput="3" /><Link inputowner="9" indexofinput="2" outputowner="10" indexofoutput="4" /><Link inputowner="8" indexofinput="2" outputowner="9" indexofoutput="3" /><Link inputowner="7" indexofinput="2" outputowner="10" indexofoutput="4" /><Link inputowner="12" indexofinput="2" outputowner="3" indexofoutput="3" /><Link inputowner="8" indexofinput="2" outputowner="12" indexofoutput="3" /><Link inputowner="4" indexofinput="2" outputowner="0" indexofoutput="2" /></Diagram></BehaviorKeyframe></BehaviorLayer></Timeline></Box><Box name="Dialog" id="3" localization="8" tooltip="An example of multilanguage dialog implementation" x="351" y="457"><dialogFile>../zodiac/zodiac.dlg</dialogFile><bitmap>media/images/box/box-dialog.png</bitmap><script language="4"><content><![CDATA[]]></content></script><Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" /><Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" /><Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" /><Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="4" /><Output name="playAGame" type="1" type_size="1" nature="2" inner="0" tooltip="stimulated using $playAGame=1 in qiChat script when User wants to play a game&#x0A;" id="5" /><Resource name="Speech" type="Lock" timeout="0" /><Resource name="Speech recognition" type="Lock" timeout="0" /></Box><Box name="Read Emotions" id="13" localization="8" tooltip="Enter description here" x="316" y="183"><bitmap>media/images/box/box-diagram.png</bitmap><script language="4"><content><![CDATA[]]></content></script><Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" /><Input name="input" type="1" type_size="1" nature="2" inner="0" tooltip="" id="2" /><Timeline enable="0"><BehaviorLayer name="behavior_layer1"><BehaviorKeyframe name="keyframe1" index="1"><Diagram scale="70.7107"><Box name="Get Age" id="1" localization="8" tooltip="This box returns the age of the person in front of the robot.&#x0A;The detection fails when there are more or less than one person in front of the robot or when the timeout is exceeded.&#x0A;&#x0A;It is possible to set up the Confidence Threshold and the Timeout parameters for this box. " x="165" y="522"><bitmap>media/images/box/interaction/age.png</bitmap><script language="4"><content><![CDATA[class MyClass(GeneratedClass):
+		self.onStopped("done")]]></content></script><pluginContent><text><![CDATA[done]]></text></pluginContent><Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when Diagram is loaded." id="1" /><Input name="onStart" type="1" type_size="1" nature="1" inner="0" tooltip="To send the text on the output." id="2" /><Output name="onStopped" type="3" type_size="1" nature="2" inner="0" tooltip="The text you entered." id="3" /></Box><Link inputowner="5" indexofinput="2" outputowner="4" indexofoutput="3" /><Link inputowner="6" indexofinput="2" outputowner="5" indexofoutput="6" /><Link inputowner="3" indexofinput="2" outputowner="6" indexofoutput="3" /><Link inputowner="10" indexofinput="2" outputowner="3" indexofoutput="3" /><Link inputowner="9" indexofinput="2" outputowner="10" indexofoutput="4" /><Link inputowner="8" indexofinput="2" outputowner="9" indexofoutput="3" /><Link inputowner="7" indexofinput="2" outputowner="10" indexofoutput="4" /><Link inputowner="12" indexofinput="2" outputowner="3" indexofoutput="3" /><Link inputowner="8" indexofinput="2" outputowner="12" indexofoutput="3" /><Link inputowner="4" indexofinput="2" outputowner="0" indexofoutput="2" /></Diagram></BehaviorKeyframe></BehaviorLayer></Timeline></Box><Box name="Dialog" id="3" localization="8" tooltip="An example of multilanguage dialog implementation" x="554" y="356"><dialogFile>../zodiac/zodiac.dlg</dialogFile><bitmap>media/images/box/box-dialog.png</bitmap><script language="4"><content><![CDATA[]]></content></script><Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" /><Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" /><Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" /><Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="4" /><Output name="playAGame" type="1" type_size="1" nature="2" inner="0" tooltip="stimulated using $playAGame=1 in qiChat script when User wants to play a game&#x0A;" id="5" /><Resource name="Speech" type="Lock" timeout="0" /><Resource name="Speech recognition" type="Lock" timeout="0" /></Box><Box name="Read Emotions" id="13" localization="8" tooltip="Enter description here" x="340" y="171"><bitmap>media/images/box/box-diagram.png</bitmap><script language="4"><content><![CDATA[]]></content></script><Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" /><Input name="input" type="1" type_size="1" nature="2" inner="0" tooltip="" id="2" /><Timeline enable="0"><BehaviorLayer name="behavior_layer1"><BehaviorKeyframe name="keyframe1" index="1"><Diagram scale="70.7107"><Box name="Get Age" id="1" localization="8" tooltip="This box returns the age of the person in front of the robot.&#x0A;The detection fails when there are more or less than one person in front of the robot or when the timeout is exceeded.&#x0A;&#x0A;It is possible to set up the Confidence Threshold and the Timeout parameters for this box. " x="165" y="522"><bitmap>media/images/box/interaction/age.png</bitmap><script language="4"><content><![CDATA[class MyClass(GeneratedClass):
     def __init__(self):
         GeneratedClass.__init__(self)
 
@@ -858,138 +858,7 @@ class MyClass(GeneratedClass):
                 self.onNoFace()
 
     def onInput_onStop(self):
-        pass]]></content></script><Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" /><Input name="onStart" type="0" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input. It must be the&#x0A;FaceDetected extractor data." id="2" /><Output name="onFaceDetected" type="2" type_size="1" nature="1" inner="0" tooltip="Number of detected faces." id="3" /><Output name="onNoFace" type="1" type_size="1" nature="1" inner="0" tooltip="No face is detected." id="4" /></Box><Link inputowner="3" indexofinput="2" outputowner="0" indexofoutput="4" /><Link inputowner="0" indexofinput="6" outputowner="3" indexofoutput="3" /><Link inputowner="0" indexofinput="7" outputowner="3" indexofoutput="4" /></Diagram></BehaviorKeyframe></BehaviorLayer></Timeline></Box><Link inputowner="9" indexofinput="2" outputowner="10" indexofoutput="3" /><Link inputowner="10" indexofinput="2" outputowner="1" indexofoutput="5" /><Link inputowner="11" indexofinput="2" outputowner="3" indexofoutput="6" /><Link inputowner="3" indexofinput="2" outputowner="0" indexofoutput="2" /><Link inputowner="5" indexofinput="2" outputowner="11" indexofoutput="3" /><Link inputowner="4" indexofinput="2" outputowner="5" indexofoutput="4" /><Link inputowner="6" indexofinput="2" outputowner="5" indexofoutput="5" /></Diagram></BehaviorKeyframe></BehaviorLayer></Timeline></Box><Box name="Face Tracker" id="8" localization="-1" tooltip="This box makes the robot track a face with different modes." x="494" y="123"><bitmap>media/images/box/interaction/target_face.png</bitmap><script language="4"><content><![CDATA[import time
-
-class MyClass(GeneratedClass):
-    def __init__(self):
-        GeneratedClass.__init__(self)
-        self.tracker = ALProxy( "ALTracker" )
-        self.memory = ALProxy("ALMemory")
-        self.targetName = "Face"
-        self.distanceX = 0.0
-        self.distanceY = 0.0
-        self.angleWz = 0.0
-        self.thresholdX = 0.0
-        self.thresholdY = 0.0
-        self.thresholdWz = 0.0
-        self.subscribeDone = False
-        self.effector = "None"
-        self.isRunning = False
-
-    def onLoad(self):
-        self.BIND_PYTHON(self.getName(), "setParameter")
-        self.BIND_PYTHON(self.getName(), "onTargetLost")
-        self.BIND_PYTHON(self.getName(), "onTargetReached")
-        self.BIND_PYTHON(self.getName(), "onTargetChanged")
-        self.memory.subscribeToEvent("ALTracker/ActiveTargetChanged", self.getName(), "onTargetChanged")
-
-    def onUnload(self):
-        if self.subscribeDone:
-            self.memory.unsubscribeToEvent("ALTracker/TargetLost", self.getName())
-            self.memory.unsubscribeToEvent("ALTracker/TargetReached", self.getName())
-            self.subscribeDone = False
-
-        if self.isRunning:
-            self.tracker.setEffector("None")
-            self.tracker.stopTracker()
-            self.tracker.unregisterTarget(self.targetName)
-            self.isRunning = False
-
-    def onInput_onStart(self):
-        self.memory.subscribeToEvent("ALTracker/TargetLost", self.getName(), "onTargetLost")
-        self.memory.subscribeToEvent("ALTracker/TargetReached", self.getName(), "onTargetReached")
-        self.subscribeDone = True
-
-        mode = self.getParameter("Mode")
-        width = self.getParameter("Width (m)")
-        self.distanceX = self.getParameter("Distance X (m)")
-        self.thresholdX = self.getParameter("Threshold X (m)")
-        self.distanceY = self.getParameter("Distance Y (m)")
-        self.thresholdY = self.getParameter("Threshold Y (m)")
-        self.angleWz = self.getParameter("Theta (rad)")
-        self.thresholdWz = self.getParameter("Threshold Theta (rad)")
-        self.effector = self.getParameter("Effector")
-
-        self.tracker.setEffector(self.effector)
-
-        self.tracker.registerTarget(self.targetName, width)
-        self.tracker.setRelativePosition([-self.distanceX, self.distanceY, self.angleWz,
-                                           self.thresholdX, self.thresholdY, self.thresholdWz])
-        self.tracker.setMode(mode)
-
-        self.tracker.track(self.targetName) #Start tracker
-        self.isRunning = True
-
-    def onInput_onStop(self):
-        self.onStopped()
-        self.onUnload()
-
-    def setParameter(self, parameterName, newValue):
-        GeneratedClass.setParameter(self, parameterName, newValue)
-        if (parameterName == "Mode"):
-            self.tracker.setMode(newValue)
-            return
-
-        if (parameterName == "Width (m)"):
-            self.tracker.registerTarget(self.targetName, newValue)
-            return
-
-        if (parameterName == "Distance X (m)"):
-            self.distanceX = newValue
-            self.tracker.setRelativePosition([-self.distanceX, self.distanceY, self.angleWz,
-                                               self.thresholdX, self.thresholdY, self.thresholdWz])
-            return
-
-        if (parameterName == "Distance Y (m)"):
-            self.distanceY = newValue
-            self.tracker.setRelativePosition([-self.distanceX, self.distanceY, self.angleWz,
-                                               self.thresholdX, self.thresholdY, self.thresholdWz])
-            return
-
-        if (parameterName == "Theta (rad)"):
-            self.angleWz = newValue
-            self.tracker.setRelativePosition([-self.distanceX, self.distanceY, self.angleWz,
-                                               self.thresholdX, self.thresholdY, self.thresholdWz])
-            return
-
-        if (parameterName == "Threshold X (m)"):
-            self.thresholdX = newValue
-            self.tracker.setRelativePosition([-self.distanceX, self.distanceY, self.angleWz,
-                                               self.thresholdX, self.thresholdY, self.thresholdWz])
-            return
-
-        if (parameterName == "Threshold Y (m)"):
-            self.thresholdY = newValue
-            self.tracker.setRelativePosition([-self.distanceX, self.distanceY, self.angleWz,
-                                               self.thresholdX, self.thresholdY, self.thresholdWz])
-            return
-
-        if (parameterName == "Threshold Theta (rad)"):
-            self.thresholdWz = newValue
-            self.tracker.setRelativePosition([-self.distanceX, self.distanceY, self.angleWz,
-                                               self.thresholdX, self.thresholdY, self.thresholdWz])
-            return
-
-        if(parameterName == "Effector"):
-            self.tracker.setEffector(newValue)
-            self.effector = newValue
-            return
-
-    def onTargetLost(self, key, value, message):
-        self.targetLost()
-
-    def onTargetReached(self, key, value, message):
-        self.targetReached()
-
-    def onTargetChanged(self, key, value, message):
-        if value == self.targetName and not self.subscribeDone:
-            self.memory.subscribeToEvent("ALTracker/TargetLost", self.getName(), "onTargetLost")
-            self.memory.subscribeToEvent("ALTracker/TargetReached", self.getName(), "onTargetReached")
-            self.subscribeDone = True
-        elif value != self.targetName and self.subscribeDone:
-            self.memory.unsubscribeToEvent("ALTracker/TargetLost", self.getName())
-            self.memory.unsubscribeToEvent("ALTracker/TargetReached", self.getName())
-            self.subscribeDone = False]]></content></script><Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" /><Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" /><Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" /><Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="4" /><Output name="targetLost" type="1" type_size="1" nature="2" inner="0" tooltip="Signal sent when the target is lost." id="5" /><Output name="targetReached" type="1" type_size="1" nature="2" inner="0" tooltip="Signal sent when the target is reached." id="6" /><Parameter name="Mode" inherits_from_parent="0" content_type="3" value="Head" default_value="Head" custom_choice="0" tooltip="Set tracker mode" id="7"><Choice value="Head" /><Choice value="WholeBody" /><Choice value="Move" /></Parameter><Parameter name="Effector" inherits_from_parent="0" content_type="3" value="None" default_value="None" custom_choice="0" tooltip="Set effector to use for tracking. Head is always used." id="8"><Choice value="None" /><Choice value="Arms" /><Choice value="LArm" /><Choice value="RArm" /></Parameter><Parameter name="Width (m)" inherits_from_parent="0" content_type="2" value="0.1" default_value="0.1" min="0.01" max="0.6" tooltip="Width of the face in meters" id="9" /><Parameter name="Distance X (m)" inherits_from_parent="0" content_type="2" value="0.3" default_value="0.3" min="0.01" max="5" tooltip="Distance on X axis the robot will try to maintain from its target in move modes." id="10" /><Parameter name="Threshold X (m)" inherits_from_parent="0" content_type="2" value="0.1" default_value="0.1" min="0.01" max="1" tooltip="Threshold above which the robot will move to track its target in move modes." id="11" /><Parameter name="Distance Y (m)" inherits_from_parent="0" content_type="2" value="0" default_value="0" min="-5" max="5" tooltip="Distance on Y axis the robot will try to maintain from its target in move modes." id="12" /><Parameter name="Threshold Y (m)" inherits_from_parent="0" content_type="2" value="0.1" default_value="0.1" min="0.01" max="1" tooltip="Threshold above which the robot will move to track its target in move modes." id="13" /><Parameter name="Theta (rad)" inherits_from_parent="0" content_type="2" value="0" default_value="0" min="-3.14" max="3.14" tooltip="Wz angle of the vector robot-target the robot will try to maintain in move modes." id="14" /><Parameter name="Threshold Theta (rad)" inherits_from_parent="0" content_type="2" value="0.3" default_value="0.3" min="0" max="3.14" tooltip="Threshold of the angle of the vector robot-target above which the robot will move to track its target in move modes." id="15" /></Box><Box name="Delay" id="14" localization="8" tooltip="Wait a moment before triggering the output. &#x0A;Can be stopped anytime. &#x0A;Multiple inputs will trigger multiple outputs." x="194" y="324"><bitmap>media/images/box/wait.png</bitmap><script language="4"><content><![CDATA[class MyClass(GeneratedClass):
+        pass]]></content></script><Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" /><Input name="onStart" type="0" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input. It must be the&#x0A;FaceDetected extractor data." id="2" /><Output name="onFaceDetected" type="2" type_size="1" nature="1" inner="0" tooltip="Number of detected faces." id="3" /><Output name="onNoFace" type="1" type_size="1" nature="1" inner="0" tooltip="No face is detected." id="4" /></Box><Link inputowner="3" indexofinput="2" outputowner="0" indexofoutput="4" /><Link inputowner="0" indexofinput="6" outputowner="3" indexofoutput="3" /><Link inputowner="0" indexofinput="7" outputowner="3" indexofoutput="4" /></Diagram></BehaviorKeyframe></BehaviorLayer></Timeline></Box><Link inputowner="9" indexofinput="2" outputowner="10" indexofoutput="3" /><Link inputowner="10" indexofinput="2" outputowner="1" indexofoutput="5" /><Link inputowner="11" indexofinput="2" outputowner="3" indexofoutput="6" /><Link inputowner="3" indexofinput="2" outputowner="0" indexofoutput="2" /><Link inputowner="5" indexofinput="2" outputowner="11" indexofoutput="3" /><Link inputowner="4" indexofinput="2" outputowner="5" indexofoutput="4" /><Link inputowner="6" indexofinput="2" outputowner="5" indexofoutput="5" /></Diagram></BehaviorKeyframe></BehaviorLayer></Timeline></Box><Box name="Delay" id="14" localization="8" tooltip="Wait a moment before triggering the output. &#x0A;Can be stopped anytime. &#x0A;Multiple inputs will trigger multiple outputs." x="306" y="330"><bitmap>media/images/box/wait.png</bitmap><script language="4"><content><![CDATA[class MyClass(GeneratedClass):
     def __init__(self):
         GeneratedClass.__init__(self, False)
 
@@ -1023,102 +892,7 @@ class MyClass(GeneratedClass):
     def onInput_onStop(self):
         if self.getParameter("Trigger timerOutput if cancelled") and self.delayed:
             self.timerOutput()
-        self.onUnload()]]></content></script><Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" /><Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Start the Delay box with the configured timeout value." id="2" /><Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Stop the wait and stimulate the output." id="3" /><Output name="timerOutput" type="1" type_size="1" nature="1" inner="0" tooltip="Send a bang once delay set in parameters is elapsed, or if the box is stopped and the appropriate parameter is set." id="4" /><Parameter name="Timeout (s)" inherits_from_parent="0" content_type="2" value="30" default_value="1" min="0" max="5000" tooltip="Duration the box waits before stimulating the output." id="5" /><Parameter name="Trigger timerOutput if cancelled" inherits_from_parent="0" content_type="0" value="0" default_value="1" tooltip="If the box is currently delaying at least one signal and cancelled, output will be stimulated." id="6" /></Box><Box name="Basic Awareness" id="4" localization="8" tooltip="This box is an interface to the module ALBasicAwareness.&#x0A;&#x0A;It is a simple way to make the robot establish and keep eye contact with people.&#x0A;&#x0A;V1.1.0" x="405" y="319"><bitmap>media/images/box/tracker/basicawareness.png</bitmap><script language="4"><content><![CDATA[class MyClass(GeneratedClass):
-    def __init__(self):
-        GeneratedClass.__init__(self)
-
-    def onLoad(self):
-        #put initialization code here
-        try:
-            self.awareness = ALProxy('ALBasicAwareness')
-        except Exception as e:
-            self.awareness = None
-            self.logger.error(e)
-
-        self.memory = ALProxy('ALMemory')
-
-        self.isRunning = False
-        self.trackedHuman = -1
-
-        import threading
-        self.subscribingLock = threading.Lock()
-
-        self.BIND_PYTHON(self.getName(), "setParameter")
-
-
-    def onUnload(self):
-        if self.isRunning:
-            if self.awareness:
-                self.awareness.stopAwareness()
-                self.setALMemorySubscription(False)
-            self.isRunning = False
-
-
-    def onInput_onStart(self):
-        if self.isRunning:
-            return # already running, nothing to do
-
-        self.isRunning = True
-        self.trackedHuman = -1
-        if self.awareness:
-            self.awareness.setEngagementMode(self.getParameter('Engagement Mode'))
-            self.awareness.setTrackingMode(self.getParameter('Tracking Mode'))
-            self.awareness.setStimulusDetectionEnabled('Sound', self.getParameter('Sound Stimulus'))
-            self.awareness.setStimulusDetectionEnabled('Movement', self.getParameter('Movement Stimulus'))
-            self.awareness.setStimulusDetectionEnabled('People', self.getParameter('People Stimulus'))
-            self.awareness.setStimulusDetectionEnabled('Touch', self.getParameter('Touch Stimulus'))
-            self.setALMemorySubscription(True)
-            self.awareness.startAwareness()
-
-
-
-    def onInput_onStop(self):
-        if not self.isRunning:
-            return # already stopped, nothing to do
-
-        self.onUnload()
-        self.onStopped()
-
-
-    def setParameter(self, parameterName, newValue):
-        GeneratedClass.setParameter(self, parameterName, newValue)
-
-        if self.awareness:
-            if parameterName == 'Sound Stimulus':
-                self.awareness.setStimulusDetectionEnabled('Sound', newValue)
-            elif parameterName == 'Movement Stimulus':
-                self.awareness.setStimulusDetectionEnabled('Movement', newValue)
-            elif parameterName == 'People Stimulus':
-                self.awareness.setStimulusDetectionEnabled('People', newValue)
-            elif parameterName == 'Touch Stimulus':
-                self.awareness.setStimulusDetectionEnabled('Touch', newValue)
-
-
-    # callbacks for ALBasicAwareness events
-    def onStimulusDetected(self, eventName, stimulusName, subscriberIdentifier):
-        self.StimulusDetected(stimulusName)
-
-    def onHumanTracked(self, eventName, humanID, subscriberIdentifier):
-        self.trackedHuman = humanID
-        self.HumanTracked(humanID)
-
-    def onHumanLost(self, eventName, subscriberIdentifier):
-        self.HumanLost(self.trackedHuman)
-        self.trackedHuman = -1
-
-
-    def setALMemorySubscription(self, subscribe):
-        self.subscribingLock.acquire()
-        if subscribe:
-            self.memory.subscribeToEvent('ALBasicAwareness/StimulusDetected', self.getName(), 'onStimulusDetected')
-            self.memory.subscribeToEvent('ALBasicAwareness/HumanTracked', self.getName(), 'onHumanTracked')
-            self.memory.subscribeToEvent('ALBasicAwareness/HumanLost', self.getName(), 'onHumanLost')
-        else:
-            self.memory.unsubscribeToEvent('ALBasicAwareness/StimulusDetected', self.getName())
-            self.memory.unsubscribeToEvent('ALBasicAwareness/HumanTracked', self.getName())
-            self.memory.unsubscribeToEvent('ALBasicAwareness/HumanLost', self.getName())
-
-        self.subscribingLock.release()]]></content></script><Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" /><Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Starts the Basic Awareness with the given Engagement and Tracking mode parameters, using the given stimuli." id="2" /><Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Stops the Basic Awareness." id="3" /><Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="4" /><Output name="StimulusDetected" type="3" type_size="1" nature="2" inner="0" tooltip="This output is stimulated when BasicAwareness detects a stimulus amongst the tracked stimulus.&#x0A;&#x0A;The output data is the stimulus&apos; name." id="5" /><Output name="HumanTracked" type="2" type_size="1" nature="2" inner="0" tooltip="This output is triggered when ALBasicAwareness detects a stimulus that is confirmed to be a human.&#x0A;&#x0A;The output data is the ID corresponding to the tracked human. It is shared with PeoplePerception and can be used there. This output is triggered with -1 if ALBasicAwareness tried to detect a human but failed." id="6" /><Output name="HumanLost" type="2" type_size="1" nature="2" inner="0" tooltip="This output is triggered when the human currently tracked is lost.&#x0A;&#x0A; The output data is the ID corresponding to the lost human. It can be reused in PeoplePerception." id="7" /><Parameter name="Engagement Mode" inherits_from_parent="0" content_type="3" value="FullyEngaged" default_value="Unengaged" custom_choice="0" tooltip='The engagement mode specifies how &quot;focused&quot; the robot is on the engaged person.' id="8"><Choice value="Unengaged" /><Choice value="FullyEngaged" /><Choice value="SemiEngaged" /></Parameter><Parameter name="Tracking Mode" inherits_from_parent="0" content_type="3" value="Head" default_value="Head" custom_choice="0" tooltip="The tracking mode describes how the robot keeps eye contact with an engaged person." id="9"><Choice value="Head" /><Choice value="BodyRotation" /><Choice value="WholeBody" /></Parameter><Parameter name="Sound Stimulus" inherits_from_parent="0" content_type="0" value="1" default_value="1" tooltip="" id="10" /><Parameter name="Movement Stimulus" inherits_from_parent="0" content_type="0" value="1" default_value="1" tooltip="" id="11" /><Parameter name="People Stimulus" inherits_from_parent="0" content_type="0" value="1" default_value="1" tooltip="" id="12" /><Parameter name="Touch Stimulus" inherits_from_parent="0" content_type="0" value="1" default_value="1" tooltip="" id="13" /></Box><Box name="Only Once" id="1" localization="8" tooltip="This box&apos;s output is stimulated only the first time the onSignal input is.&#x0A;&#x0A;Note: It is reset when the diagram containing the box is unloaded." x="48" y="169"><bitmap>media/images/box/loop.png</bitmap><script language="4"><content><![CDATA[class MyClass(GeneratedClass):
+        self.onUnload()]]></content></script><Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" /><Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Start the Delay box with the configured timeout value." id="2" /><Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Stop the wait and stimulate the output." id="3" /><Output name="timerOutput" type="1" type_size="1" nature="1" inner="0" tooltip="Send a bang once delay set in parameters is elapsed, or if the box is stopped and the appropriate parameter is set." id="4" /><Parameter name="Timeout (s)" inherits_from_parent="0" content_type="2" value="30" default_value="1" min="0" max="5000" tooltip="Duration the box waits before stimulating the output." id="5" /><Parameter name="Trigger timerOutput if cancelled" inherits_from_parent="0" content_type="0" value="0" default_value="1" tooltip="If the box is currently delaying at least one signal and cancelled, output will be stimulated." id="6" /></Box><Box name="Only Once" id="1" localization="8" tooltip="This box&apos;s output is stimulated only the first time the onSignal input is.&#x0A;&#x0A;Note: It is reset when the diagram containing the box is unloaded." x="110" y="206"><bitmap>media/images/box/loop.png</bitmap><script language="4"><content><![CDATA[class MyClass(GeneratedClass):
     def __init__(self):
         GeneratedClass.__init__(self, False)
 

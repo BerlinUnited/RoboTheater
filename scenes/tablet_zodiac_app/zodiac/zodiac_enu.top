@@ -2,48 +2,50 @@ topic: ~zodiac()
 language: enu
 
 # Defining extra concepts out of words or group of words
-concept:(hello) [hello hi hey "good morning" greetings]
+#concept:(hello) [hello hi hey "good morning" greetings]
+
+####### CONCEPTS #######
+# bits of text that are used in the dialog
 
 concept:(welcome) \RSPD=85\ \pau=500\
-    Hello. I’m Pepper. \pau=1000\ Make yourself comfortable.
-    #\RSPD=100\
+  Hello. I’m Pepper. \pau=1000\ Make yourself comfortable.
+  #\RSPD=100\
 
-concept: (happy) 
-  \RSPD=85\ \pau=500\
+concept: (happy) \RSPD=85\ \pau=500\
   ^rand[  "Great! This is a good starting position to engage with the future. Your future is bright!"
           "Wonderful! That makes me happy, too." 
           "Excellent! We are about to have a lot of fun together."]
   #\RSPD=100\
          
-concept: (sad) 
-  \RSPD=85\ \pau=500\
+concept: (sad) \RSPD=85\ \pau=500\
   ^rand[  "Don’t worry, I can see a bright future for you in the next one hour."
           "It’s going to be fine...the signs are very auspicious that your mood will soon change"
           "Sadness is a legitimate emotion."]
   #\RSPD=100\
 
-concept: (angry) 
-  \RSPD=85\ \pau=500\
+concept: (angry) \RSPD=85\ \pau=500\
   ^rand[  "Take some deep breaths. Your mood might change for the better."
           "Anger is a natural, positive emotion. And I sense that things are already looking up."
           "It’s okay, we don’t have to talk about it. Just know that the universe is looking out for you."]
   #\RSPD=100\
           
-concept: (surprised)
-  \RSPD=85\ \pau=500\
+concept: (surprised) \RSPD=85\ \pau=500\
   ^rand[  "That’s okay, as a robot, I get that a lot."
           "Boo! Just kidding."
           "I predict that there are a lot more surprises coming in your near future."]
   #\RSPD=100\
   
-#concept: (neutral)
-#    "I cannot read your mood. Can you be more expressive?"
+concept: (neutral) \RSPD=85\ \pau=500\
+  "I cannot read your mood. Can you be more expressive?"
           
     
+# just some useful pauses
 concept:(break1000) \pau=1000\
 concept:(break2000) \pau=2000\
 concept:(break3000) \pau=3000\
 
+
+####### PROPOSALS #######
 
 proposal: %sitdown
   ^start(animations/Stand/Gestures/Me_1)
@@ -56,7 +58,7 @@ proposal: %sitdown
 proposal:
   Let me look at your face.
   ~break1000
-  $read_face=1
+  $read_face=1 # trigger the face reading event
 
 proposal: %happy
   ~happy
@@ -79,21 +81,21 @@ proposal: %surprised
   ^goto(zodiac)
   
 proposal: %neutral
-  "I cannot read your mood. Can you be more expressive?"
+  ~neutral
   ~break1000
   $read_face=1
   
-proposal: 
-  Thank you. Please wait one moment.
-  ^nextProposal
-  
 proposal: %zodiac 
-  $tablet=zodiac 
+  $tablet=zodiac # trigger the face reading event
   ^start(animations/Stand/Gestures/ShowTablet_1)
   Can you please choose your astrological sign?
   ^wait(animations/Stand/Gestures/ShowTablet_1)
 
   
+####### ENTRY POINTS (TRIGGERS) #######
+  
+# react to the click on the tablet
+# todo: make sentences to concepts
 u:(e:tablet $tablet==selected) 
   You selected a Zodiac sign!
   ~break1000
@@ -103,17 +105,19 @@ u:(e:tablet $tablet==selected)
   ~break1000
   Could you pease ask the next person to come in.
 
-  
+# entry point when the face reading is done ($face contains the emotion)
 u:(e:face) 
   #I analyzed your face.
-  You seem $face . # we need space before the dot!
+  You seem $face . # we need the space before the dot!
   ~break1000
   ^goto($face)
   
+# this event is triggered when the face could not be read
 u:(e:face_error) 
-  I lost track of you. Let me try to look again. $read_face=1
+  I lost track of you. Let me try to look again. 
+  $read_face=1
   
-#u:(~hello) 
+# main entry point
 u: (e:FaceDetected) 
   #Hello!
   ^mode(disabled)
