@@ -73,7 +73,7 @@
    <nature></nature>
    <permissions/>
   </behaviorContent>
-  <dialogContent topicName="3-musketeer-story" typeVersion="1.0"/>
+  <dialogContent typeVersion="1.0" topicName="3-musketeer-story"/>
  </contents>
  <requirements>
   <naoqiRequirement minVersion="2.3"/>

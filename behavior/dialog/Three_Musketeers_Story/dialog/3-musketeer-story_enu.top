@@ -47,7 +47,7 @@ u:(e:onStart)
     ^nextProposal
 
 proposal: ^run(peppers-three-musketeers-story/animations/brass-band)
-    ~break2000
+    #~break2000
     ^nextProposal
 
 proposal: ^start(peppers-three-musketeers-story/animations/louis)
@@ -56,7 +56,7 @@ proposal: ^start(peppers-three-musketeers-story/animations/louis)
     ^nextProposal
 
 proposal: ^run(peppers-three-musketeers-story/animations/cardinal)
-    ~break3000
+    #~break3000
     ^nextProposal
 
 proposal: ^start(peppers-three-musketeers-story/animations/bravest)
@@ -65,13 +65,13 @@ proposal: ^start(peppers-three-musketeers-story/animations/bravest)
     ^nextProposal
 
 proposal: ^run(peppers-three-musketeers-story/animations/horse-riding)
-    ~break2000
+    #~break2000
     ^nextProposal
 
 proposal: ^start(peppers-three-musketeers-story/animations/fierce-duel)
     ~fierce
     ^wait(peppers-three-musketeers-story/animations/fierce-duel)
-    ~break1000
+    #~break1000
     ^nextProposal
 
 proposal: ^start(peppers-three-musketeers-story/animations/defeated)
@@ -82,18 +82,18 @@ proposal: ^start(peppers-three-musketeers-story/animations/defeated)
 proposal: ^start(peppers-three-musketeers-story/animations/acclaimed)
     ~acclaimed
     ^wait(peppers-three-musketeers-story/animations/acclaimed)
-    ~break1000
+    #~break1000
     ^nextProposal
 
 proposal: ^start(peppers-three-musketeers-story/animations/adventure)
     ~adventures
-    ~break1000
+    #~break1000
     ~beloved
     ^wait(peppers-three-musketeers-story/animations/adventure)
     ^nextProposal
 
 proposal: ^run(peppers-three-musketeers-story/animations/horse-riding)
-    ~break2000
+    #~break2000
     ^nextProposal
 
 proposal: ~end
