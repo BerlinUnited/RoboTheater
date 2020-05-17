@@ -1,0 +1,127 @@
+topic: ~zodiac()
+language: enu
+
+# Defining extra concepts out of words or group of words
+concept:(hello) [hello hi hey "good morning" greetings]
+
+concept:(welcome) \RSPD=85\ \pau=500\
+    Hello. I’m Pepper. \pau=1000\ Make yourself comfortable.
+    #\RSPD=100\
+
+concept: (happy) 
+  \RSPD=85\ \pau=500\
+  ^rand[  "Great! This is a good starting position to engage with the future. Your future is bright!"
+          "Wonderful! That makes me happy, too." 
+          "Excellent! We are about to have a lot of fun together."]
+  #\RSPD=100\
+         
+concept: (sad) 
+  \RSPD=85\ \pau=500\
+  ^rand[  "Don’t worry, I can see a bright future for you in the next one hour."
+          "It’s going to be fine...the signs are very auspicious that your mood will soon change"
+          "Sadness is a legitimate emotion."]
+  #\RSPD=100\
+
+concept: (angry) 
+  \RSPD=85\ \pau=500\
+  ^rand[  "Take some deep breaths. Your mood might change for the better."
+          "Anger is a natural, positive emotion. And I sense that things are already looking up."
+          "It’s okay, we don’t have to talk about it. Just know that the universe is looking out for you."]
+  #\RSPD=100\
+          
+concept: (surprised)
+  \RSPD=85\ \pau=500\
+  ^rand[  "That’s okay, as a robot, I get that a lot."
+          "Boo! Just kidding."
+          "I predict that there are a lot more surprises coming in your near future."]
+  #\RSPD=100\
+  
+#concept: (neutral)
+#    "I cannot read your mood. Can you be more expressive?"
+          
+    
+concept:(break1000) \pau=1000\
+concept:(break2000) \pau=2000\
+concept:(break3000) \pau=3000\
+
+
+proposal: %sitdown
+  ^start(animations/Stand/Gestures/Me_1)
+  ~welcome
+  ^wait(animations/Stand/Gestures/Me_1)
+  ~break3000
+  ^nextProposal
+  
+# read face
+proposal:
+  Let me look at your face.
+  ~break1000
+  $read_face=1
+
+proposal: %happy
+  ~happy
+  ~break3000
+  ^goto(zodiac)
+  
+proposal: %sad
+  ~sad
+  ~break3000
+  ^goto(zodiac)
+  
+proposal: %angry
+  ~angry
+  ~break3000
+  ^goto(zodiac)
+  
+proposal: %surprised
+  ~surprised
+  ~break3000
+  ^goto(zodiac)
+  
+proposal: %neutral
+  "I cannot read your mood. Can you be more expressive?"
+  ~break1000
+  $read_face=1
+  
+proposal: 
+  Thank you. Please wait one moment.
+  ^nextProposal
+  
+proposal: %zodiac 
+  $tablet=zodiac 
+  ^start(animations/Stand/Gestures/ShowTablet_1)
+  Can you please choose your astrological sign?
+  ^wait(animations/Stand/Gestures/ShowTablet_1)
+
+  
+u:(e:tablet $tablet==selected) 
+  You selected a Zodiac sign!
+  ~break1000
+  Based on this information, when you enter the theater, please sit down in row ^rand[1 2 3 4 5], seat number ^rand[1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20]. 
+  ~break1000
+  I foresee that this will be the best place for you. Thank you. 
+  ~break1000
+  Could you pease ask the next person to come in.
+
+  
+u:(e:face) 
+  #I analyzed your face.
+  You seem $face . # we need space before the dot!
+  ~break1000
+  ^goto($face)
+  
+u:(e:face_error) 
+  I lost track of you. Let me try to look again. $read_face=1
+  
+#u:(~hello) 
+u: (e:FaceDetected) 
+  #Hello!
+  ^mode(disabled)
+  ~break3000
+  "Oh"
+  #\pau=30000\
+  ~break3000
+  ^mode(contextual)
+  ^goto(sitdown)
+  #^goto(happy)
+
