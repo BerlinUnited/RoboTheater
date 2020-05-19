@@ -1,0 +1,187 @@
+topic: ~zodiac2()
+language: enu
+
+# Defining extra concepts out of words or group of words
+#concept:(hello) [hello hi hey "good morning" greetings]
+
+####### CONCEPTS #######
+# bits of text that are used in the dialog
+
+concept:(welcome) \RSPD=60\ \pau=500\
+  #Hello. I'm Pepper. \pau=1000\ Make yourself comfortable.
+  Thank you for joining me.
+  #\RSPD=100\
+
+concept: (sign) \RSPD=60\
+  What is your astrological sign?
+  #Can you please choose your astrological sign?
+  
+concept: (sign_select) \RSPD=60\
+  Could you please select it.
+
+concept: (happy) #1
+  \RSPD=60\ I sense \pau=1000\ joy \pau=1000\ a joyful blue energy coming from you 
+  \pau=250\ filling up the space. \pau=1500\ I sense that you are \pau=500\ in harmony with me, and others.  
+  \pau=1000\ Happy \pau=500\ calm  \pau=4000\
+  ^rand[  "\RSPD=75\ Things must be going well for you. \pau=1000\ This is a good starting position to engage with the future. \pau=1000\ I foresee your immediate future is bright!"
+          "\RSPD=75\ Wonderful! \pau=1000\ Hehehee  \pau=1000\ That makes me happy, too. You are  \pau=500\ irresistible" 
+          "\RSPD=75\ Excellent! \pau=1000\ We are about to have a lot of fun together. "]
+  #\RSPD=100\
+
+                  
+concept: (sad) #2
+    \RSPD=50\ I sense \pau=1000\ tears \pau=1000\ the deep, black, cold \pau=750\ of the void. \RSPD=50\ \pau=1000\ I can sense a great \pau=250\ sadness \pau=250\ within you. Could it be \pau=1000\ grief \pau=500\ or \pau=500\ regret \pau=3000\
+  ^rand[  "\RSPD=75\  Don't worry  \pau=1000\ I can see a bright future for you in the next one hour."
+          "\RSPD=75\ It's going to be \pau=750\ fine. \pau=1000\ the signs are very auspicious that your mood will soon change"
+          "\RSPD=75\ I can sense that this energy will \pau=750\ dissipate as the evening progresses."]
+  #\RSPD=100\
+
+  
+concept: (angry) #3
+  \RSPD=50\ I sense \pau=1000\ heat, dry heat.  \pau=750\ a violent  \pau=700\  anger.  \pau=1000\ I can sense a deep  \pau=250\ \vct=50\ anger \vct=100\ \RSPD=50\ coming from you. \pau=3000\
+  ^rand[  "\RSPD=75\ This resentment is \pau=750\ clouding \pau=750\ your aura. \pau=1000\ Take some deep breaths. I can feel your mood will change for the better."
+          "\RSPD=75\  Oh, no. \pau=750\ to be honest, \pau=750\ I don't feel comfortable being alone in this space with you."
+          "\RSPD=75\ It's okay, \pau=750\ we don't have to \pau=750\ talk about it. \pau=1000\ Just know that \pau=500\ the universe is looking out for you."]
+          
+          
+concept: (surprised) #4
+  \RSPD=50\ I sense \pau=1000\ I can sense \pau=1000\ a cloudy, red, energy \pau=1000\ shifting, \pau=1000\ restless \pau=1000\ \vct=50\ \RSPD=25\ lonely  \RSPD=40\ \pau=1000\ \vct=100\ you seem to be a bit \pau=500\ \vct=80\ \RSPD=25\ anxious \pau=3000\
+  ^rand[  "\RSPD=75\ Anxious feeling, anxious future! \pau=1000\ So, \pau=750\ let's leave that emotion here."
+          "\RSPD=75\ Do you feel  \pau=500\ uncertain \pau=500\ about your future? \pau=1000\ Don't worry, \pau=1000\ I know that \pau=500\ nothing \pau=500\ bad will happen to you for \pau=500\ the next hour"
+          "\RSPD=75\ It's going to be okay, \pau=1000\I can sense that this energy will \pau=750\ dissipate as the evening progresses."]
+  #\RSPD=100\
+  
+  
+concept: (row) ^rand[1 2 3 4 5]
+  
+concept: (seat) ^rand[1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20]
+  
+concept: (neutral) 
+  #"I cannot read your mood. Can you be more expressive?"
+  \RSPD=50\ I sense \pau=750\ hmmm \pau=1000\ I sense \pau=750\ oh. Anger? \pau=250\ \RSPD=25\ No \pau=1000\ \RSPD=50\ happiness? \pau=1000\ I sense \pau=1500\ mixed feelings. \pau=1000\ \RSPD=40\ I am not getting a reading. \pau=1000\ Can you be \pau=750\ more expressive?
+          
+    
+# just some useful pauses
+concept:(break1000) \pau=1000\
+concept:(break2000) \pau=2000\
+concept:(break3000) \pau=3000\
+concept:(break5000) \pau=5000\
+
+####### PROPOSALS #######
+
+proposal: %sitdown
+  ^start(animations/Stand/Gestures/Me_1)
+  ~welcome
+  ^wait(animations/Stand/Gestures/Me_1)
+  ~break3000
+  ^nextProposal
+  
+# read face
+proposal:
+  #Let me look at your face.
+  It is very nice to be looking into each others eyes. 
+  ~break1000
+  $read_face=1 # trigger the face reading event
+
+proposal: %happy
+  ~happy
+  ^goto(sense_age)
+  
+proposal: %sad
+  ~sad
+  ^goto(sense_age)
+  
+proposal: %angry
+  ~angry
+  ^goto(sense_age)
+  
+proposal: %surprised
+  ~surprised
+  ^goto(sense_age)
+  
+proposal: %neutral
+  ~neutral
+  ~break1000
+  $read_face=1
+  
+proposal: %zodiac 
+  #$tablet=zodiac # trigger the face reading event
+  ~sign
+  ~break2000
+  ^start(animations/Stand/Gestures/ShowTablet_1)
+  ~sign_select
+  ^wait(animations/Stand/Gestures/ShowTablet_1)
+  $tablet=zodiac
+  
+proposal: %sense_age 
+  ~break5000 
+  ^mode(disabled)
+  \rspd=50\ Can you please \pau=750\ touch my hand? 
+  \pau=1000\ 
+  $present_hand=1
+  u1:(e:HandLeftBackTouched)
+    Gently \pau=1000\
+    Just a moment \pau=1000\ just a moment \pau=1000\ another moment \pau=1000\ .
+    Thank you! 
+    $stop_hand=1 
+    ^mode(contextual)
+    ^goto(say_age)
+  
+proposal: %say_age
+  \rspd=50\ I think you must be \pau=1500\ $Face/age .
+  ~break5000
+  ^goto(zodiac) 
+  
+proposal: %end
+  Based on this information, when you enter the theater, please sit down in 
+  ~break1000 row ~row
+  , ~break1000 seat number ~seat . 
+  ~break1000
+  I foresee that this will be the best place for you. Thank you. 
+  ~break1000
+  Could you pease ask the next person to come in.
+  
+  
+####### ENTRY POINTS (TRIGGERS) #######
+  
+# react to the click on the tablet
+# todo: make sentences to concepts
+u:(e:tablet $tablet==selected) 
+#u:(e:App/ZodiacSign)
+  \RSPD=100\
+  You selected a zodiac sign!
+  #You selected a $App/ZodiacSign sign!
+  ~break3000
+  ^goto(end)
+  
+u:(e:HandLeftBackTouched)
+  ~break1000
+  I foresee that this will be the best place for you. Thank you. 
+  ~break1000
+  Could you pease ask the next person to come in.
+
+# entry point when the face reading is done ($face contains the emotion)
+u:(e:face) 
+  #I analyzed your face.
+  #You seem $face . # we need the space before the dot!
+  ~break1000
+  ^goto($face)
+  
+# this event is triggered when the face could not be read
+u:(e:face_error) 
+  I lost track of you. Let me try to look again. 
+  $read_face=1
+  
+# main entry point
+u: (e:FaceDetected) 
+  #Hello!
+  ^mode(disabled)
+  ~break3000
+  "Oh"
+  #\pau=30000\
+  ~break3000
+  ^mode(contextual)
+  ^goto(sitdown)
+  #^goto(sense_age)
+  #^goto(happy)
+
