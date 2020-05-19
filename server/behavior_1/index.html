@@ -41,6 +41,10 @@
       });
     }
     
+    function auto_mode(mode) {
+      send("ALBasicAwareness", ["setTrackingMode", mode]);
+    }
+    
     // runBehavior
     function behavior(path) {
       send("ALBehaviorManager", ["startBehavior", path]);
@@ -117,18 +121,57 @@
   
   <body onload="init()">
 
-    <div class="container">
-
-      <div class="page-header">
-        <h1>Remote Pepper Control</h1>
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Pepper Stage Control</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li role="separator" class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#" onclick="auto_mode('MoveContextually'); say('MoveContextually'); return false">MoveContextually</a></li>
+            <li><a href="#" onclick="auto_mode('BodyRotation'); say('BodyRotation'); return false">BodyRotation</a></li>
+            <li><a href="#" onclick="auto_mode('Head'); say('Head'); return false">Head</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
       </div>
-
+    </nav>
+    
+    <div class="container">
+    
+      <div class="page-header">
+        <h1></h1>
+      </div>
+      
       <!-- say -->
       <div class="panel panel-primary">
         <div class="panel-heading">Text to Speech</div>
         <div class="panel-body">
           <textarea cols="50" rows="3" id="text">Hello Everybody!</textarea>
-          <p><a class="btn btn-success" href="#" role="button" onclick="say(document.getElementById('text').value)">
+          <p><a class="btn btn-success" href="#" role="button" onclick="say(document.getElementById('text').value); return false">
             <span class="glyphicon glyphicon-play" aria-hidden="true"></span> SAY
           </a></p>
         </div>
@@ -139,7 +182,7 @@
         <div class="panel-heading">Animated Speech</div>
         <div class="panel-body">
           <textarea cols="50" rows="3" id="atext">Hello Everybody!</textarea>
-          <p><a class="btn btn-success" href="#" role="button" onclick="sayanimated(document.getElementById('atext').value)">
+          <p><a class="btn btn-success" href="#" role="button" onclick="sayanimated(document.getElementById('atext').value); return false">
             <span class="glyphicon glyphicon-play" aria-hidden="true"></span> SAY
           </a></p>
         </div>
