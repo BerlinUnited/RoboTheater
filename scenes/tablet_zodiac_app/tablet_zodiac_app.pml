@@ -6,6 +6,7 @@
     </BehaviorDescriptions>
     <Dialogs>
         <Dialog name="zodiac" src="zodiac/zodiac.dlg" />
+        <Dialog name="zodiac2" src="zodiac2/zodiac2.dlg" />
     </Dialogs>
     <Resources>
         <File name="index" src="html/index.html" />
@@ -33,6 +34,7 @@
     </Resources>
     <Topics>
         <Topic name="zodiac_enu" src="zodiac/zodiac_enu.top" topicName="zodiac" language="en_US" />
+        <Topic name="zodiac2_enu" src="zodiac2/zodiac2_enu.top" topicName="zodiac2" language="en_US" />
     </Topics>
     <IgnoredPaths />
     <Translations auto-fill="en_US">

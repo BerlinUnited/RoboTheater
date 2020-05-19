@@ -48,50 +48,88 @@
     
   </style>
   
+  <script>
+    function select(message) {
+      send("ALMemory", ["raiseEvent", "App/ZodiacSign", message]);
+    }
+    
+    function send(proxy, call, handler) {
+      var xhr = new XMLHttpRequest();
+
+      var data = JSON.stringify({
+        "proxy": proxy,
+        "call": call
+      });
+      
+      xhr.open("POST", "198.18.0.1:8000", true);
+      
+      xhr.onload = function (e) {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            console.log(xhr.responseText);
+            
+            if(typeof handler !== "undefined") {
+              handler(xhr.responseText);
+            }
+          } else {
+            console.error(xhr.statusText);
+          }
+        }
+      };
+      
+      xhr.onerror = function (e) {
+        console.error(xhr.statusText);
+      };
+      
+      xhr.setRequestHeader("Content-Type", "application/json");
+      xhr.send(data);
+    }
+  </script>
+  
   <body>
   
     <div class="container-fluid">
       
       <div class="row align-items-center">
         <div class="col text-center rounded">
-          <a href="#" class="btn btn-primary">&#x2648</a>
+          <a href="#" class="btn btn-primary" onclick("select('1')")>&#x2648</a>
         </div>
         <div class="col text-center rounded">
-          <a href="#" class="btn btn-primary">&#x2649</a>
+          <a href="#" class="btn btn-primary" onclick("select('2')")>&#x2649</a>
         </div>
         <div class="col text-center rounded">
-          <a href="#" class="btn btn-primary">&#x264A</a>
+          <a href="#" class="btn btn-primary" onclick("select('3')")>&#x264A</a>
         </div>
         <div class="col text-center rounded">
-          <a href="#" class="btn btn-primary">&#x264B</a>
-        </div>
-        
-        <div class="w-100"></div>
-        <div class="col text-center rounded">
-          <a href="#" class="btn btn-primary">&#x264C</a>
-        </div>
-        <div class="col text-center rounded">
-          <a href="#" class="btn btn-primary">&#x264D</a>
-        </div>
-        <div class="col text-center rounded">
-          <a href="#" class="btn btn-primary">&#x264E</a>
-        </div>
-        <div class="col text-center rounded">
-          <a href="#" class="btn btn-primary">&#x264F</a>
+          <a href="#" class="btn btn-primary" onclick("select('4')")>&#x264B</a>
         </div>
         
         <div class="w-100"></div>
         <div class="col text-center rounded">
-          <a href="#" class="btn btn-primary">&#x2650</a>
+          <a href="#" class="btn btn-primary" onclick("select('5')")>&#x264C</a>
         </div>
         <div class="col text-center rounded">
-          <a href="#" class="btn btn-primary">&#x2651</a>
+          <a href="#" class="btn btn-primary" onclick("select('6')")>&#x264D</a>
         </div>
         <div class="col text-center rounded">
-          <a href="#" class="btn btn-primary">&#x2652</a>
+          <a href="#" class="btn btn-primary" onclick("select('7')")>&#x264E</a>
         </div>
         <div class="col text-center rounded">
-          <a href="#" class="btn btn-primary">&#x2653</a>
+          <a href="#" class="btn btn-primary" onclick("select('8')")>&#x264F</a>
+        </div>
+        
+        <div class="w-100"></div>
+        <div class="col text-center rounded">
+          <a href="#" class="btn btn-primary" onclick("select('9')")>&#x2650</a>
+        </div>
+        <div class="col text-center rounded">
+          <a href="#" class="btn btn-primary" onclick("select('10')")>&#x2651</a>
+        </div>
+        <div class="col text-center rounded">
+          <a href="#" class="btn btn-primary" onclick("select('11')")>&#x2652</a>
+        </div>
+        <div class="col text-center rounded">
+          <a href="#" class="btn btn-primary" onclick("select('12')")>&#x2653</a>
         </div>
       </div>
           

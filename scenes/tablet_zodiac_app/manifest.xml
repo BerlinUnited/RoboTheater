@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<package version="0.0.1" uuid="tablet_zodiac_app">
+<package uuid="tablet_zodiac_app" version="0.0.1">
  <names>
   <name lang="en_US">Future Fortune Zodiac</name>
  </names>
@@ -17,6 +17,9 @@
   </behaviorContent>
   <dialogContent typeVersion="1.0" topicName="zodiac">
    <topic path="zodiac/zodiac_enu.top" language="en_US"/>
+  </dialogContent>
+  <dialogContent typeVersion="1.0" topicName="zodiac2">
+   <topic path="zodiac2/zodiac2_enu.top" language="en_US"/>
   </dialogContent>
  </contents>
 </package>
