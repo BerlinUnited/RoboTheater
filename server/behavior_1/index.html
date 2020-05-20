@@ -31,13 +31,16 @@
         var obj = JSON.parse(s);
         console.log(obj);
         
-        var list = $("#animations")
+        var animations = $("#animations")
+        var behaviors = $("#behaviors")
         for(a of obj['data']) {
+          var item = '<li class="list-group-item"><a href="#" onclick="behavior(\'' + a + '\'); return false"><span class="glyphicon glyphicon-play"></span> ' + a +'</a></li>';
           if(a.startsWith('animations')) {
-            list.append('<li class="list-group-item"><a href="#" onclick="behavior(\'' + a + '\'); return false"><span class="glyphicon glyphicon-play"></span> ' + a +'</a></li>')
+            animations.append(item)
+          } else {
+            behaviors.append(item)
           }
         }
-        
       });
     }
     
@@ -166,25 +169,19 @@
         <h1></h1>
       </div>
       
-      <!-- say -->
+      <!-- (animated) say -->
       <div class="panel panel-primary">
         <div class="panel-heading">Text to Speech</div>
         <div class="panel-body">
-          <textarea cols="50" rows="3" id="text">Hello Everybody!</textarea>
-          <p><a class="btn btn-success" href="#" role="button" onclick="say(document.getElementById('text').value); return false">
+          <textarea rows="7" id="text" style="width:100%">Hello Everybody!</textarea>
+          <p>
+          <a class="btn btn-success" href="#" role="button" onclick="say(document.getElementById('text').value); return false">
             <span class="glyphicon glyphicon-play" aria-hidden="true"></span> SAY
-          </a></p>
-        </div>
-      </div>
-      
-      <!-- animated say -->
-      <div class="panel panel-primary">
-        <div class="panel-heading">Animated Speech</div>
-        <div class="panel-body">
-          <textarea cols="50" rows="3" id="atext">Hello Everybody!</textarea>
-          <p><a class="btn btn-success" href="#" role="button" onclick="sayanimated(document.getElementById('atext').value); return false">
-            <span class="glyphicon glyphicon-play" aria-hidden="true"></span> SAY
-          </a></p>
+          </a>
+          <a class="btn btn-warning" href="#" role="button" onclick="sayanimated(document.getElementById('atext').value); return false">
+            <span class="glyphicon glyphicon-play" aria-hidden="true"></span> ANIMATED SAY
+          </a>
+          </p>
         </div>
       </div>
       
@@ -198,6 +195,17 @@
             <span class="glyphicon glyphicon-stop" aria-hidden="true"></span> STOP ALL BEHAVIORS
           </a></p>
         </div>
+      </div>
+      
+      <div class="panel panel-primary">
+        <div class="panel-heading">Other Behaviors</div>
+        <div class="panel-body" style="max-height: 30em; overflow-y: auto;">
+          <ul class="list-group" id="behaviors"><ul>
+        </div>
+        <div class="panel-footer">
+          <p><a class="btn btn-danger" href="#" role="button" onclick="behavior_stop()">
+            <span class="glyphicon glyphicon-stop" aria-hidden="true"></span> STOP ALL BEHAVIORS
+          </a></p>
         </div>
       </div>
       
@@ -209,7 +217,6 @@
             Canvas tag not supported
           </CANVAS>
           
-        </div>
         </div>
       </div>
   
