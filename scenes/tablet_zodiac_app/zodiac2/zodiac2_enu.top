@@ -169,7 +169,8 @@ u:(e:face)
   
 # this event is triggered when the face could not be read
 u:(e:face_error) 
-  I lost track of you. Let me try to look again. 
+  \RSPD=75\ I lost track of you. Let me try to look again. 
+  ~break1000
   $read_face=1
   
 # main entry point

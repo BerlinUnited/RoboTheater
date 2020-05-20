@@ -985,7 +985,7 @@ class MyClass(GeneratedClass):
     def onInput_onSignal(self):
         if( self.bFirstTime ):
             self.bFirstTime = False
-            self.firstTime()]]></content></script><Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" /><Input name="onSignal" type="1" type_size="1" nature="1" inner="0" tooltip="The signal that must pass only once." id="2" /><Output name="firstTime" type="1" type_size="1" nature="2" inner="0" tooltip="Signal sent first time the onSignal input is stimulated." id="3" /></Box><Box name="Point At" id="10" localization="-1" tooltip="This box makes the robot point to a desired position." x="454" y="515"><bitmap>media/images/box/movement/move_arm.png</bitmap><script language="4"><content><![CDATA[import time
+            self.firstTime()]]></content></script><Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" /><Input name="onSignal" type="1" type_size="1" nature="1" inner="0" tooltip="The signal that must pass only once." id="2" /><Output name="firstTime" type="1" type_size="1" nature="2" inner="0" tooltip="Signal sent first time the onSignal input is stimulated." id="3" /></Box><Box name="Point At" id="10" localization="-1" tooltip="This box makes the robot point to a desired position." x="649" y="529"><bitmap>media/images/box/movement/move_arm.png</bitmap><script language="4"><content><![CDATA[import time
 
 class MyClass(GeneratedClass):
     def __init__(self):
@@ -1186,4 +1186,36 @@ class MyClass(GeneratedClass):
         elif(len(args) == 1):
             self.onEvent(args[0])
         else:
-            self.onEvent(args)]]></content></script><Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" /><Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="When this input is activated, the box will try to subscribe to the signal or the event passed in the box parameter.&#x0A;&#x0A;If it is retriggered and the parameter has changed, the box will undo the previous subscription and subscribe to the new signal or the new event." id="2" /><Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Stop the box and cancel the subscription, if any." id="3" /><Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="4" /><Output name="onError" type="3" type_size="1" nature="1" inner="0" tooltip="This output is triggered when the box encounters an error, and contains the error message." id="5" /><Output name="onEvent" type="0" type_size="1" nature="2" inner="0" tooltip="This output is triggered each time the signal/event to which the box is connected is emitted/raised. It will carry the payload associated with the signal emission/event raise." id="6" /><Parameter name="event" inherits_from_parent="0" content_type="3" value="stop_hand" default_value="" custom_choice="0" tooltip='This parameter describes the signal to connect to, and the service advertising this signal.&#x0A;&#x0A;Use the pattern &quot;Service.Signal&quot; to connect to a signal, or the event key to connect to an event.' id="7" /></Box><Link inputowner="13" indexofinput="2" outputowner="0" indexofoutput="2" /><Link inputowner="11" indexofinput="2" outputowner="0" indexofoutput="2" /><Link inputowner="1" indexofinput="2" outputowner="0" indexofoutput="4" /><Link inputowner="14" indexofinput="2" outputowner="1" indexofoutput="3" /><Link inputowner="3" indexofinput="2" outputowner="14" indexofoutput="4" /><Link inputowner="2" indexofinput="2" outputowner="0" indexofoutput="2" /><Link inputowner="4" indexofinput="2" outputowner="0" indexofoutput="2" /><Link inputowner="10" indexofinput="3" outputowner="4" indexofoutput="6" /><Link inputowner="10" indexofinput="2" outputowner="2" indexofoutput="6" /></Diagram></BehaviorKeyframe></BehaviorLayer></Timeline></Box></ChoregrapheProject>
+            self.onEvent(args)]]></content></script><Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" /><Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="When this input is activated, the box will try to subscribe to the signal or the event passed in the box parameter.&#x0A;&#x0A;If it is retriggered and the parameter has changed, the box will undo the previous subscription and subscribe to the new signal or the new event." id="2" /><Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Stop the box and cancel the subscription, if any." id="3" /><Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="4" /><Output name="onError" type="3" type_size="1" nature="1" inner="0" tooltip="This output is triggered when the box encounters an error, and contains the error message." id="5" /><Output name="onEvent" type="0" type_size="1" nature="2" inner="0" tooltip="This output is triggered each time the signal/event to which the box is connected is emitted/raised. It will carry the payload associated with the signal emission/event raise." id="6" /><Parameter name="event" inherits_from_parent="0" content_type="3" value="stop_hand" default_value="" custom_choice="0" tooltip='This parameter describes the signal to connect to, and the service advertising this signal.&#x0A;&#x0A;Use the pattern &quot;Service.Signal&quot; to connect to a signal, or the event key to connect to an event.' id="7" /></Box><Box name="Timer" id="7" localization="8" tooltip="Stimulate output repeatedly with the specified interval.&#x0A;Can be stopped anytime. &#x0A;Stimulating the input again restarts the timer.&#x0A;" x="477" y="526"><bitmap>media/images/box/wait.png</bitmap><script language="4"><content><![CDATA[class MyClass(GeneratedClass):
+    def __init__(self):
+        GeneratedClass.__init__(self, False)
+
+    def onLoad(self):
+        self.timer = None
+
+    def onUnload(self):
+        self.cancelTimer()
+
+    def cancelTimer(self):
+        if self.timer:
+            self.timer.stop()
+        self.timer = None
+
+    def onTimer(self):
+        self.timerOutput()
+
+    def startTimer(self):
+        import qi
+        self.timer = qi.PeriodicTask()
+        self.timer.setCallback(self.onTimer)
+        self.timer.setUsPeriod(int(self.getParameter("Period (s)") * 1000 * 1000))
+        self.timer.start(True)
+
+    def onInput_onStart(self):
+        self.cancelTimer()
+        self.startTimer()
+
+    def onInput_onStop(self):
+        if self.timer and self.timer.isRunning():
+            self.onStopped()
+        self.onUnload()]]></content></script><Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" /><Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Start the timer using the configured period value." id="2" /><Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Stop the timer." id="3" /><Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when the box is stopped." id="4" /><Output name="timerOutput" type="1" type_size="1" nature="2" inner="0" tooltip="Send a bang periodically." id="5" /><Parameter name="Period (s)" inherits_from_parent="0" content_type="2" value="0.1" default_value="1" min="0" max="5000" tooltip="Defines the period of the timer box (in seconds).&#x0A;&#x0A;For example, if this parameter is equal to 1s, the timerOutput will be stimulated&#x0A;every second until the onStop input is stimulated." id="6" /></Box><Link inputowner="13" indexofinput="2" outputowner="0" indexofoutput="2" /><Link inputowner="11" indexofinput="2" outputowner="0" indexofoutput="2" /><Link inputowner="1" indexofinput="2" outputowner="0" indexofoutput="4" /><Link inputowner="14" indexofinput="2" outputowner="1" indexofoutput="3" /><Link inputowner="3" indexofinput="2" outputowner="14" indexofoutput="4" /><Link inputowner="2" indexofinput="2" outputowner="0" indexofoutput="2" /><Link inputowner="4" indexofinput="2" outputowner="0" indexofoutput="2" /><Link inputowner="7" indexofinput="2" outputowner="2" indexofoutput="6" /><Link inputowner="7" indexofinput="3" outputowner="4" indexofoutput="6" /><Link inputowner="10" indexofinput="2" outputowner="7" indexofoutput="5" /></Diagram></BehaviorKeyframe></BehaviorLayer></Timeline></Box></ChoregrapheProject>
