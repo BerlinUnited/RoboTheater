@@ -34,10 +34,13 @@
         var animations = $("#animations")
         var behaviors = $("#behaviors")
         for(a of obj['data']) {
-          var item = '<li class="list-group-item"><a href="#" onclick="behavior(\'' + a + '\'); return false"><span class="glyphicon glyphicon-play"></span> ' + a +'</a></li>';
+          var item = '<li class="list-group-item"><a class="btn btn-default" href="#" onclick="behavior(\'' + a + '\'); return false"><span class="glyphicon glyphicon-play"></span> ' + a +'</a></li>';
           if(a.startsWith('animations')) {
             animations.append(item)
-          } else {
+          } else if (
+            a.startsWith("tablet_zodiac_app") || 
+            a.startsWith("tablet_zodiac_app")
+          ) {
             behaviors.append(item)
           }
         }
@@ -99,34 +102,63 @@
     }
     
     document.addEventListener('keydown', doKeyDown, true);
-    
-    function doKeyDown(e){
-    
+
+
+    var x = 0;
+    var y = 0;
+    var r = 0;
+      
+    function doKeyDown(e)
+    {
 			if (e.keyCode == 87) {
 				console.log("up");
+        x += 1;
 			}
 
 			if (e.keyCode == 83) {
 				console.log("down");
+        x -= 1;
 			}
 
 			if (e.keyCode == 65) {
 				console.log("left");
+        y += 1;
 			}
 
 			if (e.keyCode == 68) {
 				console.log("right");
+        y -= 1;
 			}
+      
 
+      var c = document.getElementById("canvas");
+      var ctx = c.getContext("2d");
+      
+      var cx = c.width / 2;
+      var cy = c.height / 2;
+      
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      ctx.beginPath();
+      ctx.arc(cx-y, cy-x, 40, 0, 2 * Math.PI);
+      ctx.stroke();
+      
+      ctx.moveTo(cx-y, cy-x);
+      ctx.lineTo(cx-y+Math.sin(r)*100, cy-x-Math.cos(r)*100);
+      ctx.stroke();
+      
 		}
     
     </script>
+    
+    <style>
+    </style>
   
   <body onload="init()">
 
     <!-- Fixed navbar -->
     <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
+      <div class="container-fluid">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
@@ -136,11 +168,12 @@
           </button>
           <a class="navbar-brand" href="#">Pepper Stage Control</a>
         </div>
+        
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <!-- <li><a href="#about">About</a></li> -->
+            <!-- <li><a href="#contact">Contact</a></li> -->
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
               <ul class="dropdown-menu">
@@ -163,63 +196,79 @@
       </div>
     </nav>
     
-    <div class="container">
+    
+    <div class="container-fluid">
     
       <div class="page-header">
         <h1></h1>
       </div>
       
+      <div class="row">
+      
       <!-- (animated) say -->
-      <div class="panel panel-primary">
-        <div class="panel-heading">Text to Speech</div>
-        <div class="panel-body">
-          <textarea rows="7" id="text" style="width:100%">Hello Everybody!</textarea>
-          <p>
-          <a class="btn btn-success" href="#" role="button" onclick="say(document.getElementById('text').value); return false">
-            <span class="glyphicon glyphicon-play" aria-hidden="true"></span> SAY
-          </a>
-          <a class="btn btn-warning" href="#" role="button" onclick="sayanimated(document.getElementById('atext').value); return false">
-            <span class="glyphicon glyphicon-play" aria-hidden="true"></span> ANIMATED SAY
-          </a>
-          </p>
+      <div class="col-md-6">
+        <div class="panel panel-primary">
+          <div class="panel-heading">Text to Speech</div>
+          <div class="panel-body">
+            <textarea rows="12" id="text" style="width:100%">Hello Everybody!</textarea>
+            <p>
+            <a class="btn btn-success" href="#" role="button" onclick="say(document.getElementById('text').value); return false">
+              <span class="glyphicon glyphicon-play" aria-hidden="true"></span> SAY
+            </a>
+            <a class="btn btn-warning" href="#" role="button" onclick="sayanimated(document.getElementById('atext').value); return false">
+              <span class="glyphicon glyphicon-play" aria-hidden="true"></span> ANIMATED SAY
+            </a>
+            </p>
+          </div>
         </div>
       </div>
       
-      <div class="panel panel-primary">
-        <div class="panel-heading">Animations</div>
-        <div class="panel-body" style="max-height: 30em; overflow-y: auto;">
-          <ul class="list-group" id="animations"><ul>
-        </div>
-        <div class="panel-footer">
-          <p><a class="btn btn-danger" href="#" role="button" onclick="behavior_stop()">
-            <span class="glyphicon glyphicon-stop" aria-hidden="true"></span> STOP ALL BEHAVIORS
-          </a></p>
-        </div>
-      </div>
-      
-      <div class="panel panel-primary">
-        <div class="panel-heading">Other Behaviors</div>
-        <div class="panel-body" style="max-height: 30em; overflow-y: auto;">
-          <ul class="list-group" id="behaviors"><ul>
-        </div>
-        <div class="panel-footer">
-          <p><a class="btn btn-danger" href="#" role="button" onclick="behavior_stop()">
-            <span class="glyphicon glyphicon-stop" aria-hidden="true"></span> STOP ALL BEHAVIORS
-          </a></p>
+      <!-- animations -->
+      <div class="col-md-6">
+        <div class="panel panel-primary">
+          <div class="panel-heading">Animations</div>
+          <div class="panel-body" style="max-height: 30em; overflow-y: auto;">
+            <ul class="list-group" id="animations"><ul>
+          </div>
+          <div class="panel-footer">
+            <p><a class="btn btn-danger" href="#" role="button" onclick="behavior_stop()">
+              <span class="glyphicon glyphicon-stop" aria-hidden="true"></span> STOP ALL BEHAVIORS
+            </a></p>
+          </div>
         </div>
       </div>
       
+      <div class="col-md-6"></div>
+      
+      <!-- other behaviors -->
+      <div class="col-md-6">
+        <div class="panel panel-primary">
+          <div class="panel-heading">Other Behaviors</div>
+          <div class="panel-body" style="max-height: 30em; overflow-y: auto;">
+            <ul class="list-group" id="behaviors"><ul>
+          </div>
+          <div class="panel-footer">
+            <p><a class="btn btn-danger" href="#" role="button" onclick="behavior_stop()">
+              <span class="glyphicon glyphicon-stop" aria-hidden="true"></span> STOP ALL BEHAVIORS
+            </a></p>
+          </div>
+        </div>
+      </div>
+      
+      <!--
       <div class="panel panel-primary">
         <div class="panel-heading">Move</div>
         <div class="panel-body" style="max-height: 30em; overflow-y: auto;">
           
-          <CANVAS WIDTH="500" HEIGHT="400" ID="canvas_1" tabindex="0">
+          <canvas id="canvas" WIDTH="400" HEIGHT="400" style="border:1px solid #000000;">
             Canvas tag not supported
-          </CANVAS>
+          </canvas>
           
         </div>
       </div>
+      -->
   
+      </div><!-- /.row -->
     </div><!-- /.container -->
 
 
