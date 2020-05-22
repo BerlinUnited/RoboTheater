@@ -1,0 +1,30 @@
+topic: ~palm_reading()
+language: enu
+
+# Defining extra concepts out of words or group of words
+#concept:(hello) [hello hi hey "good morning" greetings]
+
+u:(e:onStart) 
+  Hello!
+  \pau=1000\
+  Can I see your hand please? 
+  \pau=1000\
+  ^start(reach_out)
+  \pau=1000\
+  I would like to have a look at your palm.
+  #^startSound(scan_sound_1)
+  \pau=10000\
+  #^waitSound(scan_sound_1)
+  \rspd=70\ 
+  You have a long, straight head line extending across the palm, toward the pinkie: do you analyze much? 
+  \pau=3000\
+  You might often find yourself mulling things over and over before coming to a decision.    
+  \pau=3000\
+  Long, curved heart line arcing up and reaching the base of the middle finger: Your passions and desires drive you, and you don’t care who knows it.
+  You have a pretty broken life line: Each break in the line represents a traumatic experience that has had an impact on your life choices, which might connect to your general indecisiveness that might be something you could experience even in a course of next one hour of this performance.   
+  \pau=3000\
+  Do you trust me? 
+  \pau=3000\
+  #Hmm ok, I understand your skepticism but
+  I understand you might be skeptical, but you should know that I run your palm photo through an algorithm that contains million images and examples of different palms, so I have to say the reading is quite precise.
+  ^wait(reach_out)

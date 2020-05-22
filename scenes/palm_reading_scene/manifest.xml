@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<package uuid="palm_reading_scene" version="0.0.0">
+ <names>
+  <name lang="en_US">palm_reading_scene</name>
+ </names>
+ <descriptionLanguages>
+  <language>en_US</language>
+ </descriptionLanguages>
+ <contents>
+  <behaviorContent path="behavior_1">
+   <userRequestable/>
+   <nature>interactive</nature>
+   <names>
+    <name lang="en_US">space &amp; time</name>
+   </names>
+   <permissions/>
+  </behaviorContent>
+  <behaviorContent path="reach_out">
+   <nature>interactive</nature>
+   <permissions/>
+  </behaviorContent>
+  <dialogContent typeVersion="1.0" topicName="palm_reading"/>
+ </contents>
+</package>
