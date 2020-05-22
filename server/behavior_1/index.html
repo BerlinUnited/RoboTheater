@@ -47,6 +47,14 @@
       });
     }
     
+    function listening_mode(state) {
+      send("ALListeningMovement", ["setEnabled", state]);
+    }
+    
+    function auto_life(state) {
+      send("ALAutonomousLife", ["setState", state]);
+    }
+    
     function auto_mode(mode) {
       send("ALBasicAwareness", ["setTrackingMode", mode]);
     }
@@ -175,17 +183,27 @@
             <!-- <li><a href="#about">About</a></li> -->
             <!-- <li><a href="#contact">Contact</a></li> -->
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Autonomous Life<span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
+                <li><a href="#" onclick="auto_life('disabled'); say('Autonomous life disabled'); return false">Disable</a></li>
+                <li><a href="#" onclick="auto_life('solitary'); say('Autonomous life enabled'); return false">Ebable</a></li>
+                <li><a href="#" onclick="auto_life('interactive'); say('Autonomous life interactive'); return false">(interactive)</a></li>
                 <li role="separator" class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li>
+                <li class="dropdown-header">Mode</li>
+                <li><a href="#" onclick="auto_mode('MoveContextually'); say('MoveContextually'); return false">MoveContextually</a></li>
+                <li><a href="#" onclick="auto_mode('BodyRotation'); say('BodyRotation'); return false">BodyRotation</a></li>
+                <li><a href="#" onclick="auto_mode('Head'); say('Head'); return false">Head</a></li>
               </ul>
             </li>
+            <!--
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Listening Mode<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#" onclick="listening_mode('0'); say('Listening disabled'); return false">Disable</a></li>
+                <li><a href="#" onclick="listening_mode('1'); say('Listening enabled'); return false">Ebable</a></li>
+              </ul>
+            </li>
+            -->
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#" onclick="auto_mode('MoveContextually'); say('MoveContextually'); return false">MoveContextually</a></li>
