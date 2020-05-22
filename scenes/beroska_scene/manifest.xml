@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <package version="0.0.0" uuid="beroska_scene">
  <names>
-  <name lang="en_US">beroska</name>
+  <name lang="en_US">beroska_scene</name>
  </names>
  <descriptionLanguages>
   <language>en_US</language>

@@ -9,8 +9,6 @@
         <File name="beroska_round" src="beroska_round.pmt" />
         <File name="swiftswords_ext" src="behavior_1/swiftswords_ext.mp3" />
         <File name="taichimove" src="behavior_1/taichimove.pmt" />
-        <File name="map" src="map.png" />
-        <File name="map2" src="map2.png" />
     </Resources>
     <Topics />
     <IgnoredPaths />
