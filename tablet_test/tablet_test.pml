@@ -30,5 +30,7 @@
         <File name="bootstrap.min.js" src="html/lib/bootstrap-4.5.0/js/bootstrap.min.js.map" />
     </Resources>
     <Topics />
-    <IgnoredPaths />
+    <IgnoredPaths>
+        <Path src="translations" />
+    </IgnoredPaths>
 </Package>
