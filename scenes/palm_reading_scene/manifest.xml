@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<package uuid="palm_reading_scene" version="0.0.0">
+<package version="0.0.0" uuid="palm_reading_scene">
  <names>
   <name lang="en_US">palm_reading_scene</name>
  </names>
@@ -19,6 +19,6 @@
    <nature>interactive</nature>
    <permissions/>
   </behaviorContent>
-  <dialogContent typeVersion="1.0" topicName="palm_reading"/>
+  <dialogContent topicName="palm_reading" typeVersion="1.0"/>
  </contents>
 </package>
