@@ -9,7 +9,7 @@ u:(e:onStart)
   \pau=1000\
   Can I see your hand please? 
   \pau=1000\
-  ^start(reach_out)
+  ^start(palm_reading_scene/reach_out)
   \pau=1000\
   I would like to have a look at your palm.
   #^startSound(scan_sound_1)
@@ -27,4 +27,4 @@ u:(e:onStart)
   \pau=3000\
   #Hmm ok, I understand your skepticism but
   I understand you might be skeptical, but you should know that I run your palm photo through an algorithm that contains million images and examples of different palms, so I have to say the reading is quite precise.
-  ^wait(reach_out)
+  ^wait(palm_reading_scene/reach_out)
