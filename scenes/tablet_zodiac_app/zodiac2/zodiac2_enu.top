@@ -128,7 +128,7 @@ proposal: %sense_age
     ^goto(say_age)
   
 proposal: %say_age
-  \rspd=50\ I think you must be \pau=1500\ $Face/age .
+  \rspd=50\ I think you must be \pau=1500\ $Face/age years old.
   ~break5000
   ^goto(zodiac) 
   
