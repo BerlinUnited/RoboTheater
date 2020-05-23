@@ -17,6 +17,7 @@ except ImportError:
   HAS_NAOQI = False
 
 
+import threading
 import traceback
 import json
 
@@ -116,17 +117,23 @@ class MyClass(GeneratedClass):
         # change the working directory to the directory of the app
         # this is where the html files are
         os.chdir(self.behaviorAbsolutePath())
+
+        socketserver.TCPServer.allow_reuse_address = True
         self.server = socketserver.TCPServer(("", PORT), NaoQiHandler)
 
     def onUnload(self):
-        print("Shutting down server ... ")
-        self.server.shutdown()
-        print("Shutting down server done.")
+        t = threading.Thread(target=self.server.shutdown)
+        self.logger.info("Shutting down server ... ")
+        t.start()
+        t.join()
+        #self.server.shutdown()
+        self.logger.info("Shutting down server done.")
 
     def onInput_onStart(self):
-        self.logger.info("serving at port: ".format(PORT))
+        self.logger.info("Serving at port: {}".format(PORT))
         self.server.serve_forever()
-        print("Serving at port: {}".format(PORT))
+        self.logger.info("Stopped serving at port: {}".format(PORT))
+
 
     def onInput_onStop(self):
         self.onUnload()
