@@ -47,34 +47,19 @@
       });
     }
     
-    function listening_mode(state) {
-      send("ALListeningMovement", ["setEnabled", state]);
-    }
-    
-    function auto_life(state) {
-      send("ALAutonomousLife", ["setState", state]);
-    }
-    
-    function auto_mode(mode) {
-      send("ALBasicAwareness", ["setTrackingMode", mode]);
-    }
+    function listening_mode(state) { send("ALListeningMovement", ["setEnabled", state]); }
+    function auto_life(state) { send("ALAutonomousLife", ["setState", state]); }
+    function auto_mode(mode) { send("ALBasicAwareness", ["setTrackingMode", mode]); }
     
     // runBehavior
-    function behavior(path) {
-      send("ALBehaviorManager", ["startBehavior", path]);
-    }
+    function behavior(path) { send("ALBehaviorManager", ["startBehavior", path]); }
+    function behavior_stop() { send("ALBehaviorManager", ["stopAllBehaviors"]); }
     
-    function behavior_stop() {
-      send("ALBehaviorManager", ["stopAllBehaviors"]);
-    }
-    
-    function say(message) {
-      send("ALTextToSpeech", ["say", message]);
-    }
-    
-    function sayanimated(message) {
-      send("ALAnimatedSpeech", ["say", message, "{\"speakingMovementMode\":contextual}"]);
-    }
+    // say
+    // NOTE: pCall - is an asynchroneous (non blocking) call
+    function say(message) { send("ALTextToSpeech", ["pCall", "say", message]); }
+    function say_animated(message) { send("ALAnimatedSpeech", ["pCall", "say", message, "{\"speakingMovementMode\":contextual}"]); }
+    function say_stop(message) { send("ALTextToSpeech", ["stopAll"]); }
     
     function send(proxy, call, handler) {
       var xhr = new XMLHttpRequest();
@@ -233,8 +218,11 @@
             <a class="btn btn-success" href="#" role="button" onclick="say(document.getElementById('text').value); return false">
               <span class="glyphicon glyphicon-play" aria-hidden="true"></span> SAY
             </a>
-            <a class="btn btn-warning" href="#" role="button" onclick="sayanimated(document.getElementById('text').value); return false">
+            <a class="btn btn-warning" href="#" role="button" onclick="say_animated(document.getElementById('text').value); return false">
               <span class="glyphicon glyphicon-play" aria-hidden="true"></span> ANIMATED SAY
+            </a>
+            <a class="btn btn-danger" href="#" role="button" onclick="say_stop(); return false">
+              <span class="glyphicon glyphicon-stop" aria-hidden="true"></span> STOP SPEECH
             </a>
             </p>
           </div>

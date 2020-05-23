@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<package version="0.0.0" uuid="server-f94c42">
+<package uuid="remote-server" version="0.0.1">
  <names>
-  <name lang="en_US">Untitled</name>
+  <name lang="en_US">RemoteServer</name>
  </names>
  <supportedLanguages>
   <language>en_US</language>

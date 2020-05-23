@@ -1,5 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" ?><ChoregrapheProject xmlns="http://www.aldebaran-robotics.com/schema/choregraphe/project.xsd" xar_version="3"><Box name="root" id="-1" localization="8" tooltip="Root box of Choregraphe&apos;s behavior. Highest level possible." x="0" y="0"><bitmap>media/images/box/root.png</bitmap><script language="4"><content><![CDATA[]]></content></script><Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" /><Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" /><Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" /><Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="4" /><Timeline enable="0"><BehaviorLayer name="behavior_layer1"><BehaviorKeyframe name="keyframe1" index="1"><Diagram><Box name="Python Script" id="1" localization="8" tooltip="This box contains a basic python script and can be used to create any python script box you would like.&#x0A;&#x0A;To edit its script, double-click on it." x="270" y="129"><bitmap>media/images/box/box-python-script.png</bitmap><script language="4"><content><![CDATA[from __future__ import print_function
+<?xml version="1.0" encoding="UTF-8" ?><ChoregrapheProject xmlns="http://www.aldebaran-robotics.com/schema/choregraphe/project.xsd" xar_version="3"><Box name="root" id="-1" localization="8" tooltip="Root box of Choregraphe&apos;s behavior. Highest level possible." x="0" y="0"><bitmap>media/images/box/root.png</bitmap><script language="4"><content><![CDATA[]]></content></script><Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" /><Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" /><Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" /><Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="4" /><Timeline enable="0"><BehaviorLayer name="behavior_layer1"><BehaviorKeyframe name="keyframe1" index="1"><Diagram><Box name="Python Script" id="1" localization="8" tooltip="This box contains a basic python script and can be used to create any python script box you would like.&#x0A;&#x0A;To edit its script, double-click on it." x="212" y="90"><bitmap>media/images/box/box-python-script.png</bitmap><script language="4"><content><![CDATA[from __future__ import print_function
 
+# note this for Pythong 2.7 and 3.x compatibility
 try:
   from SimpleHTTPServer import SimpleHTTPRequestHandler
   import SocketServer as socketserver
@@ -7,42 +8,46 @@ except ImportError:
   from http.server import SimpleHTTPRequestHandler
   import socketserver
 
-
+# this makes it possible to run the script without naqi for testing purposes
 try:
-  from naoqi import ALProxy
+  import qi
+
   HAS_NAOQI = True
 except ImportError:
   HAS_NAOQI = False
+
 
 import traceback
 import json
 
 PORT = 8000
 
-#https://stackoverflow.com/questions/9590382/forcing-python-json-module-to-work-with-ascii
-def ascii_encode_dict(data):
-    ascii_encode = lambda x: x.encode('ascii')
-    return dict(map(ascii_encode, pair) for pair in data.items())
-
 class NaoQIManager:
     def __init__(self):
-      self.proxys = {}
+      self.services = {}
 
-    def call(self, proxy, call):
+      # create a connect a local session
+      self.session = qi.Session()
+      self.session.connect("tcp://localhost:9559")
+
+    # make a call to a service
+    def call(self, service, call):
         if not HAS_NAOQI:
           print("WARNING: HAS_NAOQI")
 
-        if not proxy in self.proxys:
-          print("Connect to Proxy: {}".format(proxy))
+        # service is not connected yet
+        if not service in self.services:
+          print("Connect to Proxy: {}".format(service))
 
           if HAS_NAOQI:
-            self.proxys[proxy] = ALProxy(proxy, "localhost", 9559)
+            self.services[service] = self.session.service(service)
 
-        print("call {}({})".format(proxy, call))
+        print("call {}({})".format(service, call))
         if HAS_NAOQI:
-          return self.proxys[proxy].pythonCall(call)
+          return self.services[service].call(*call)
 
         return None
+
 
 class NaoQiHandler(SimpleHTTPRequestHandler):
     def _set_headers(self):
@@ -62,30 +67,40 @@ class NaoQiHandler(SimpleHTTPRequestHandler):
     def do_HEAD(self):
         self._set_headers()
 
-    def run_naoqi(self, proxy, call):
-      if not hasattr(self, 'naoqi'):
-        self.naoqi = NaoQIManager()
+    def run_naoqi(self, service, call):
+        # create a naoqi manager if not avaliable yet
+        if not hasattr(self, 'naoqi'):
+            self.naoqi = NaoQIManager()
 
-      proxy = proxy.encode('ascii')
-      call = [c.encode('ascii') for c in call]
+        # encode everything as ascii, this is crucial
+        service = service.encode('ascii')
+        call = [c.encode('ascii') for c in call]
 
-      return self.naoqi.call(proxy, call)
+        return self.naoqi.call(service, call)
 
 
     def do_POST(self):
         try:
-          #length = int(self.headers.get('content-length'))
+          # get the length of the data to read
+          # python 2.7
           if hasattr(self.headers, 'getheader'):
             length = int(self.headers.getheader('content-length'))
-          else:
+          else: # python 3.x
             length = int(self.headers.get('content-length'))
+
           data = self.rfile.read(length)
-          #parse data
+
+          # parse json data
           msg = json.loads(data)
           print(msg)
+
+          # forward the call to naoqi
           result = self.run_naoqi(msg['proxy'], msg['call'])
+
+          # sed a response
           self._set_headers()
           self.wfile.write(str(result).encode("utf8"))
+
         except Exception:
           self._set_headers()
           tb = traceback.format_exc()
@@ -98,25 +113,21 @@ class MyClass(GeneratedClass):
         GeneratedClass.__init__(self)
 
     def onLoad(self):
-        #put initialization code here
-        pass
+        # change the working directory to the directory of the app
+        # this is where the html files are
+        os.chdir(self.behaviorAbsolutePath())
+        self.server = socketserver.TCPServer(("", PORT), NaoQiHandler)
 
     def onUnload(self):
-        #put clean-up code here
-        pass
+        print("Shutting down server ... ")
+        self.server.shutdown()
+        print("Shutting down server done.")
 
     def onInput_onStart(self):
-
-        #self.onStopped() #activate the output of the box
-        #handler = SimpleHTTPRequestHandler
-
-        os.chdir(self.behaviorAbsolutePath())
-
-        handler = NaoQiHandler
-        httpd = socketserver.TCPServer(("", PORT), handler)
-        print("serving at port", PORT)
-        httpd.serve_forever()
+        self.logger.info("serving at port: ".format(PORT))
+        self.server.serve_forever()
+        print("Serving at port: {}".format(PORT))
 
     def onInput_onStop(self):
-        self.onUnload() #it is recommended to reuse the clean-up as the box is stopped
-        self.onStopped() #activate the output of the box]]></content></script><Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" /><Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" /><Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" /><Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="4" /></Box><Link inputowner="1" indexofinput="2" outputowner="0" indexofoutput="2" /><Link inputowner="0" indexofinput="4" outputowner="1" indexofoutput="4" /></Diagram></BehaviorKeyframe></BehaviorLayer></Timeline></Box></ChoregrapheProject>
+        self.onUnload()
+        self.onStopped()]]></content></script><Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" /><Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" /><Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" /><Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="4" /></Box><Link inputowner="1" indexofinput="2" outputowner="0" indexofoutput="2" /><Link inputowner="0" indexofinput="4" outputowner="1" indexofoutput="4" /></Diagram></BehaviorKeyframe></BehaviorLayer></Timeline></Box></ChoregrapheProject>
