@@ -54,7 +54,12 @@
     function auto_mode(mode) { send("ALBasicAwareness", ["setTrackingMode", mode]); }
     
     // runBehavior
-    function behavior(path) { send("ALBehaviorManager", ["startBehavior", path]); last_behavior = path; }
+    function behavior(path) { 
+      behavior_stop(last_behavior);
+      send("ALBehaviorManager", ["startBehavior", path]); 
+      last_behavior = path; 
+    }
+    
     function behavior_stop(path) { 
       if(path == null) {
         path = last_behavior;
