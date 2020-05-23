@@ -18,7 +18,9 @@
   </head>
 
   <script>
-
+    // hack:
+    var last_behavior = '';
+  
     function init() {
       // getLoadedBehaviors
       // getDefaultBehaviors
@@ -52,8 +54,13 @@
     function auto_mode(mode) { send("ALBasicAwareness", ["setTrackingMode", mode]); }
     
     // runBehavior
-    function behavior(path) { send("ALBehaviorManager", ["startBehavior", path]); }
-    function behavior_stop() { send("ALBehaviorManager", ["stopAllBehaviors"]); }
+    function behavior(path) { send("ALBehaviorManager", ["startBehavior", path]); last_behavior = path; }
+    function behavior_stop(path) { 
+      if(path == null) {
+        path = last_behavior;
+      }
+      send("ALBehaviorManager", ["stopBehavior", path]); 
+    }
     
     // say
     // NOTE: pCall - is an asynchroneous (non blocking) call
@@ -68,6 +75,7 @@
         "proxy": proxy,
         "call": call
       });
+      console.log(data);
       
       xhr.open("POST", "naoqi", true);
       
@@ -237,8 +245,8 @@
             <ul class="list-group" id="animations"><ul>
           </div>
           <div class="panel-footer">
-            <p><a class="btn btn-danger" href="#" role="button" onclick="behavior_stop()">
-              <span class="glyphicon glyphicon-stop" aria-hidden="true"></span> STOP ALL BEHAVIORS
+            <p><a id="animations_stop" class="btn btn-danger" href="#" role="button" onclick="behavior_stop(); return false">
+              <span class="glyphicon glyphicon-stop" aria-hidden="true"></span> STOP LAST BEHAVIOR
             </a></p>
           </div>
         </div>
@@ -254,8 +262,8 @@
             <ul class="list-group" id="behaviors"><ul>
           </div>
           <div class="panel-footer">
-            <p><a class="btn btn-danger" href="#" role="button" onclick="behavior_stop()">
-              <span class="glyphicon glyphicon-stop" aria-hidden="true"></span> STOP ALL BEHAVIORS
+            <p><a id="behaviors_stop" class="btn btn-danger" href="#" role="button" onclick="behavior_stop(); return false">
+              <span class="glyphicon glyphicon-stop" aria-hidden="true"></span> STOP LAST BEHAVIOR
             </a></p>
           </div>
         </div>
