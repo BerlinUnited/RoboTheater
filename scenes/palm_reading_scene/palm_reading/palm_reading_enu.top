@@ -2,7 +2,11 @@ topic: ~palm_reading()
 language: enu
 
 # Defining extra concepts out of words or group of words
-#concept:(hello) [hello hi hey "good morning" greetings]
+concept:(hello) [hello hi hey "good morning" greetings]
+
+u:(e:HandLeftBackTouched)
+  I foresee that this will be the best place for you. Thank you. 
+  Could you pease ask the next person to come in.
 
 u:(e:onStart) 
   Hello!
@@ -12,9 +16,7 @@ u:(e:onStart)
   ^start(palm_reading_scene/reach_out)
   \pau=1000\
   I would like to have a look at your palm.
-  #^startSound(scan_sound_1)
-  \pau=10000\
-  #^waitSound(scan_sound_1)
+  ^wait(palm_reading_scene/reach_out)
   \rspd=70\ 
   You have a long, straight head line extending across the palm, toward the pinkie: do you analyze much? 
   \pau=3000\
@@ -27,4 +29,3 @@ u:(e:onStart)
   \pau=3000\
   #Hmm ok, I understand your skepticism but
   I understand you might be skeptical, but you should know that I run your palm photo through an algorithm that contains million images and examples of different palms, so I have to say the reading is quite precise.
-  ^wait(palm_reading_scene/reach_out)
