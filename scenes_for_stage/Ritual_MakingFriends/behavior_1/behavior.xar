@@ -27,7 +27,7 @@ class MyClass(GeneratedClass):
     def move(self, p):
         pos = [p[0][0], p[0][1], p[0][2]]
         a = math.atan2(pos[1],pos[0])
-        self.logger.info(a)
+        #self.logger.info(a)
 
         dist = pos[0] - 1.2
         if dist < -0.1:
@@ -39,7 +39,7 @@ class MyClass(GeneratedClass):
         elif dist > 0.6:
             self.msg(0)
         elif abs(dist) < 0.1 and pos[2] > 0.6:
-            self.msg(3)
+            self.msg(2)
 
 
         dist = self.clamp(dist, -1.0, 1.0)
@@ -58,7 +58,7 @@ class MyClass(GeneratedClass):
             npos = pos
             npos[2] += 0.4 + math.sin(time.time())*0.8
             self.tracker.pointAt("Arms", pos, 2, 0.6);
-            self.msg(2)
+            self.msg(3)
             #self.tracker.pointAt("Arms", pos, 2, 0.6);
             #self.tracker.setEffector("Arms")
             #if not self.behavior.isBehaviorRunning("animations/Stand/Waiting/MysticalPower_1"):

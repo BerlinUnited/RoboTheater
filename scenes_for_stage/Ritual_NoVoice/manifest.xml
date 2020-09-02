@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<package uuid="ritual_friendship" version="0.0.0">
+<package uuid="ritual_novoice" version="0.0.0">
  <names>
-  <name lang="en_US">TheaterRitual</name>
+  <name lang="en_US">TheaterRitualNoVoice</name>
  </names>
  <supportedLanguages>
   <language>en_US</language>
