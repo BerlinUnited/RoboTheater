@@ -16,6 +16,12 @@
         <File name="Cad" src="html/Cad.gif" />
         <File name="index" src="html/index.html" />
         <File name="scan_sound_1" src="sound/scan_sound_1.mp3" />
+        <File name="P2" src="sound/P2.wav" />
+        <File name="P3" src="sound/P3.wav" />
+        <File name="P4" src="sound/P4.wav" />
+        <File name="P5" src="sound/P5.wav" />
+        <File name="P6" src="sound/P6.wav" />
+        <File name="p1" src="sound/p1.wav" />
     </Resources>
     <Topics>
         <Topic name="palm_reading_enu" src="palm_reading/palm_reading_enu.top" topicName="palm_reading" language="en_US" />
