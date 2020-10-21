@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<package uuid="theater_playvideo" version="0.0.0">
+<package version="0.0.0" uuid="theater_playvideo">
  <names>
   <name lang="en_US">Theater_PlayVideo</name>
  </names>
@@ -13,9 +13,6 @@
   <behaviorContent path="behavior_1">
    <userRequestable/>
    <nature>interactive</nature>
-   <triggerSentences/>
-   <loadingResponses/>
-   <autonomous/>
    <permissions/>
   </behaviorContent>
   <behaviorContent path="collapse">

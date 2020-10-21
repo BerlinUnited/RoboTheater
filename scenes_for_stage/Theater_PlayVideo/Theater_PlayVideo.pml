@@ -20,8 +20,8 @@
         <File name="Bcorrect" src="html/vid/Bcorrect.mp4" />
         <File name="Ccorrect" src="html/vid/Ccorrect.mp4" />
         <File name="Dcorrect" src="html/vid/Dcorrect.mp4" />
-        <File name="callfromfuture" src="html/vid/callfromfuture.mp4" />
-        <File name="callfromfuture800" src="html/vid/callfromfuture800.mp4" />
+        <File name="callfromfuture_720" src="html/vid/callfromfuture_720.mp4" />
+        <File name="callfromfuture_800" src="html/vid/callfromfuture_800.mp4" />
     </Resources>
     <Topics />
     <IgnoredPaths />
