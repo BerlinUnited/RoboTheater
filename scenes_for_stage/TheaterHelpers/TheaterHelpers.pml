@@ -12,6 +12,9 @@
         <BehaviorDescription name="behavior" src="Dance/ballet_dance" xar="behavior.xar" />
         <BehaviorDescription name="behavior" src="Dance/funny_dance" xar="behavior.xar" />
         <BehaviorDescription name="behavior" src="Dance/pepper_dance" xar="behavior.xar" />
+        <BehaviorDescription name="behavior" src="stopBasicAwareness" xar="behavior.xar" />
+        <BehaviorDescription name="behavior" src="soundOn" xar="behavior.xar" />
+        <BehaviorDescription name="behavior" src="soundOff" xar="behavior.xar" />
     </BehaviorDescriptions>
     <Dialogs />
     <Resources />

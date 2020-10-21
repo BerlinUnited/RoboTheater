@@ -13,6 +13,9 @@
   <behaviorContent path="behavior_1">
    <userRequestable/>
    <nature>interactive</nature>
+   <triggerSentences/>
+   <loadingResponses/>
+   <autonomous/>
    <permissions/>
   </behaviorContent>
   <behaviorContent path="fixHead">
@@ -29,6 +32,9 @@
   </behaviorContent>
   <behaviorContent path="reanableBasicAwareness">
    <nature>interactive</nature>
+   <triggerSentences/>
+   <loadingResponses/>
+   <autonomous/>
    <permissions/>
   </behaviorContent>
   <behaviorContent path="Dance/abbronza_dance">
@@ -48,6 +54,24 @@
    <permissions/>
   </behaviorContent>
   <behaviorContent path="Dance/pepper_dance">
+   <nature>interactive</nature>
+   <permissions/>
+  </behaviorContent>
+  <behaviorContent path="stopBasicAwareness">
+   <nature>interactive</nature>
+   <triggerSentences/>
+   <loadingResponses/>
+   <autonomous/>
+   <permissions/>
+  </behaviorContent>
+  <behaviorContent path="soundOn">
+   <nature>interactive</nature>
+   <triggerSentences/>
+   <loadingResponses/>
+   <autonomous/>
+   <permissions/>
+  </behaviorContent>
+  <behaviorContent path="soundOff">
    <nature>interactive</nature>
    <permissions/>
   </behaviorContent>
