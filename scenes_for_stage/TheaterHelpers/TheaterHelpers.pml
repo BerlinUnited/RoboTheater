@@ -15,6 +15,8 @@
         <BehaviorDescription name="behavior" src="stopBasicAwareness" xar="behavior.xar" />
         <BehaviorDescription name="behavior" src="soundOn" xar="behavior.xar" />
         <BehaviorDescription name="behavior" src="soundOff" xar="behavior.xar" />
+        <BehaviorDescription name="behavior" src="presentLeft" xar="behavior.xar" />
+        <BehaviorDescription name="behavior" src="presentRight" xar="behavior.xar" />
     </BehaviorDescriptions>
     <Dialogs />
     <Resources />

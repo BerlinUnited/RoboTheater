@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<package version="0.0.0" uuid="theaterhelpers">
+<package uuid="theaterhelpers" version="0.0.0">
  <names>
   <name lang="en_US">TheaterHelpers</name>
  </names>
@@ -32,9 +32,6 @@
   </behaviorContent>
   <behaviorContent path="reanableBasicAwareness">
    <nature>interactive</nature>
-   <triggerSentences/>
-   <loadingResponses/>
-   <autonomous/>
    <permissions/>
   </behaviorContent>
   <behaviorContent path="Dance/abbronza_dance">
@@ -59,19 +56,24 @@
   </behaviorContent>
   <behaviorContent path="stopBasicAwareness">
    <nature>interactive</nature>
-   <triggerSentences/>
-   <loadingResponses/>
-   <autonomous/>
    <permissions/>
   </behaviorContent>
   <behaviorContent path="soundOn">
+   <nature>interactive</nature>
+   <permissions/>
+  </behaviorContent>
+  <behaviorContent path="soundOff">
+   <nature>interactive</nature>
+   <permissions/>
+  </behaviorContent>
+  <behaviorContent path="presentLeft">
    <nature>interactive</nature>
    <triggerSentences/>
    <loadingResponses/>
    <autonomous/>
    <permissions/>
   </behaviorContent>
-  <behaviorContent path="soundOff">
+  <behaviorContent path="presentRight">
    <nature>interactive</nature>
    <permissions/>
   </behaviorContent>
