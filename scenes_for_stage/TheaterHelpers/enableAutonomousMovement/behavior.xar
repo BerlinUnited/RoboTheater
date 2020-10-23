@@ -14,21 +14,21 @@
 
     def onInput_onStart(self):
         if self.awareness:
-#            self.awareness.setEngagementMode("Unengaged")
-#            self.awareness.setTrackingMode("Head")
-#            self.awareness.setStimulusDetectionEnabled('Sound', True)
-#            self.awareness.setStimulusDetectionEnabled('Movement', True)
-#            self.awareness.setStimulusDetectionEnabled('People', True)
-#            self.awareness.setStimulusDetectionEnabled('Touch', True)
-            self.awareness.setEnabled(False)
-            if not self.awareness.isAwarenessPaused():
-                self.awareness.pauseAwareness()
+            self.awareness.setEngagementMode("Unengaged")
+            self.awareness.setTrackingMode("Head")
+            self.awareness.setStimulusDetectionEnabled('Sound', True)
+            self.awareness.setStimulusDetectionEnabled('Movement', True)
+            self.awareness.setStimulusDetectionEnabled('People', True)
+            self.awareness.setStimulusDetectionEnabled('Touch', True)
+            self.awareness.setEnabled(True)
+            if self.awareness.isAwarenessPaused():
+                self.awareness.resumeAwareness()
         if self.autonomouslife:
-            self.autonomouslife.setAutonomousAbilityEnabled("AutonomousBlinking", False)
-            self.autonomouslife.setAutonomousAbilityEnabled("BackgroundMovement", False)
-            self.autonomouslife.setAutonomousAbilityEnabled("BasicAwareness", False)
-            self.autonomouslife.setAutonomousAbilityEnabled("ListeningMovement", False)
-            self.autonomouslife.setAutonomousAbilityEnabled("SpeakingMovement", False)
+            self.autonomouslife.setAutonomousAbilityEnabled("AutonomousBlinking", True)
+            self.autonomouslife.setAutonomousAbilityEnabled("BackgroundMovement", True)
+            self.autonomouslife.setAutonomousAbilityEnabled("BasicAwareness", True)
+            self.autonomouslife.setAutonomousAbilityEnabled("ListeningMovement", True)
+            self.autonomouslife.setAutonomousAbilityEnabled("SpeakingMovement", True)
         if self.ft:
             self.ft.stopTracking()
         if self.tracker:
