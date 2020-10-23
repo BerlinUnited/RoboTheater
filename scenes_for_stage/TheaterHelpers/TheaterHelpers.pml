@@ -18,6 +18,8 @@
         <BehaviorDescription name="behavior" src="presentLeft" xar="behavior.xar" />
         <BehaviorDescription name="behavior" src="presentRight" xar="behavior.xar" />
         <BehaviorDescription name="behavior" src="theaterListeners" xar="behavior.xar" />
+        <BehaviorDescription name="behavior" src="disableAutonomousMovement" xar="behavior.xar" />
+        <BehaviorDescription name="behavior" src="enableAutonomousMovement" xar="behavior.xar" />
     </BehaviorDescriptions>
     <Dialogs>
         <Dialog name="empty" src="empty/empty.dlg" />
