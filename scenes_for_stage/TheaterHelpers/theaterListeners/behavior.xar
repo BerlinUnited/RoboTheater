@@ -269,7 +269,7 @@ class MyClass(GeneratedClass):
         elif(len(args) == 1):
             self.onEvent(args[0])
         else:
-            self.onEvent(args)]]></content></script><Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" /><Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="When this input is activated, the box will try to subscribe to the signal or the event passed in the box parameter.&#x0A;&#x0A;If it is retriggered and the parameter has changed, the box will undo the previous subscription and subscribe to the new signal or the new event." id="2" /><Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Stop the box and cancel the subscription, if any." id="3" /><Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="4" /><Output name="onError" type="3" type_size="1" nature="1" inner="0" tooltip="This output is triggered when the box encounters an error, and contains the error message." id="5" /><Output name="onEvent" type="0" type_size="1" nature="2" inner="0" tooltip="This output is triggered each time the signal/event to which the box is connected is emitted/raised. It will carry the payload associated with the signal emission/event raise." id="6" /><Parameter name="event" inherits_from_parent="0" content_type="3" value="MiddleTactilTouched" default_value="" custom_choice="0" tooltip='This parameter describes the signal to connect to, and the service advertising this signal.&#x0A;&#x0A;Use the pattern &quot;Service.Signal&quot; to connect to a signal, or the event key to connect to an event.' id="7" /></Box><Box name="Show Image" id="13" localization="8" tooltip="display an image on the screen&#x0A;&#x0A;V1.0.0&#x0A;" x="605" y="556"><bitmap>media/images/box/interaction/rec_movie.png</bitmap><script language="4"><content><![CDATA[
+            self.onEvent(args)]]></content></script><Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" /><Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="When this input is activated, the box will try to subscribe to the signal or the event passed in the box parameter.&#x0A;&#x0A;If it is retriggered and the parameter has changed, the box will undo the previous subscription and subscribe to the new signal or the new event." id="2" /><Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Stop the box and cancel the subscription, if any." id="3" /><Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="4" /><Output name="onError" type="3" type_size="1" nature="1" inner="0" tooltip="This output is triggered when the box encounters an error, and contains the error message." id="5" /><Output name="onEvent" type="0" type_size="1" nature="2" inner="0" tooltip="This output is triggered each time the signal/event to which the box is connected is emitted/raised. It will carry the payload associated with the signal emission/event raise." id="6" /><Parameter name="event" inherits_from_parent="0" content_type="3" value="MiddleTactilTouched" default_value="" custom_choice="0" tooltip='This parameter describes the signal to connect to, and the service advertising this signal.&#x0A;&#x0A;Use the pattern &quot;Service.Signal&quot; to connect to a signal, or the event key to connect to an event.' id="7" /></Box><Box name="Show Image" id="13" localization="8" tooltip="display an image on the screen&#x0A;&#x0A;V1.0.0&#x0A;" x="605" y="556"><bitmap>media/images/box/interaction/rec_movie.png</bitmap><script language="4"><content><![CDATA[from time import sleep
 
 class MyClass(GeneratedClass):
 
@@ -297,7 +297,7 @@ class MyClass(GeneratedClass):
     def onInput_onStart(self, img):
         # We create TabletService here in order to avoid
         # problems with connections and disconnections of the tablet during the life of the application
-        self.imgs={"black":"img/black.jpg","blue":"img/blue.jpg","colors":"colors.html","dark_red":"img/dark_red.jpg","green":"img/green.jpg","lavender":"img/lavender.jpg","light_blue":"img/light_blue.jpg","light_green":"img/light_green.jpg","light_orange":"img/light_orange.jpg","orange":"img/orange.jpg","pink":"img/pink.jpg","purple":"img/purple.jpg","red":"img/red.jpg","white":"img/white.jpg","yellow":"img/yellow.jpg","answerD":"img/D.png"}
+        self.imgs={"black":"img/black.jpg","blue":"img/blue.jpg","colors":"img/colors.html","dark_red":"img/dark_red.jpg","green":"img/green.jpg","lavender":"img/lavender.jpg","light_blue":"img/light_blue.jpg","light_green":"img/light_green.jpg","light_orange":"img/light_orange.jpg","orange":"img/orange.jpg","pink":"img/pink.jpg","purple":"img/purple.jpg","red":"img/red.jpg","white":"img/white.jpg","yellow":"img/yellow.jpg","answerD":"img/D.png"}
         self.logger.warning("theater_show_image is '" + img + "'")
         if not img in self.imgs.keys():
             self.logger.warning("'" + img + "' is not in imgs")
@@ -306,16 +306,21 @@ class MyClass(GeneratedClass):
             url = self.imgs[img]
         tabletService = self._getTabletService()
         if tabletService:
-            try:
+
                 if not url.startswith('http'):
                     url = self._getAbsoluteUrl(url)
                 if(img=="colors"):
-                    tabletService.showWebview(url)
+                    try:
+                        tabletService.showWebview(url)
+                    except Exception as err:
+                        self.logger.error("Error during ShowWebView : %s " % err)
+                        self.onStopped()
                 else:
-                    tabletService.showImage(url)
-            except Exception as err:
-                self.logger.error("Error during ShowImage : %s " % err)
-                self.onStopped()
+                    try:
+                        tabletService.showImage(url)
+                    except Exception as err:
+                        self.logger.error("Error during ShowImage : %s " % err)
+                        self.onStopped()
         else:
             self.logger.warning("No ALTabletService, can't display the image.")
             self.onStopped()
