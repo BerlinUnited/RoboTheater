@@ -119,7 +119,7 @@
       
       // create a button list
       var buttonList = $('<ul class="list-group"></ul>').appendTo($(".panel-body", scene));
-      for(var e of data['items']) {
+      for(var e of data['items']) { // btn-block style="width:50%;"
         var anchor = $('<a class="btn btn-default" href="#"><span class="glyphicon glyphicon-play"></span> ' + e['title'] + '</a>')
           .click(blockingActionsExecutor(e['actions'], 'scenes'));
         
@@ -230,7 +230,7 @@
     function say_animated(message) { send("ALAnimatedSpeech", ["pCall", "say", message, "{\"speakingMovementMode\":contextual}"]); }
     function say_stop(message) { send("ALTextToSpeech", ["stopAll"]); }
     
-    function send(proxy, call, handler) {
+    function send(proxy, call, handler, error_handler) {
       var xhr = new XMLHttpRequest();
 
       var data = JSON.stringify({
@@ -244,7 +244,7 @@
       xhr.onload = function (e) {
         if (xhr.readyState === 4) {
           if (xhr.status === 200) {
-            console.log(xhr.responseText);
+            //console.log(xhr.responseText);
             
             if(typeof handler !== "undefined") {
               handler(xhr.responseText);
@@ -256,10 +256,13 @@
       };
       
       xhr.onerror = function (e) {
-        console.error(e);
-        console.error(xhr.statusText);
+        //console.error(e);
+        //console.error(xhr.statusText);
+        
         // also call the handler in case of error
-        if(typeof handler !== "undefined") {
+        if(typeof error_handler !== "undefined") {
+          error_handler(xhr.statusText);
+        } else if(typeof handler !== "undefined") {
           handler(xhr.statusText);
         }
       };
@@ -402,13 +405,31 @@
     setInterval(processMove, 100);
     
     
-    // feature in progress: make sure we have a good connection
+    // Experimental: feature in progress: make sure we have a good connection
+    /*
     var timePingSent = 0;
     function sendPing() {
       timePingSent = getTime();
-      send("ALMemory", ["ping"], (e) => { console.log(e); console.log(getTime()-timePingSent); });
+      send("ALMemory", ["ping"], (e) => { 
+        //console.log(e); 
+        //console.log(getTime()-timePingSent); 
+        if(getTime() < timePingSent + 100) {
+          $("#connection").removeClass("btn-warning btn-danger")
+          $("#connection").addClass("btn-success")
+        } else if(getTime() < timePingSent + 500) {
+          $("#connection").removeClass("btn-success btn-danger")
+          $("#connection").addClass("btn-warning")
+        } else {
+          $("#connection").removeClass("btn-warning btn-success")
+          $("#connection").addClass("btn-danger")
+        }
+      }, (e) => {
+        $("#connection").removeClass("btn-warning btn-success")
+        $("#connection").addClass("btn-danger")
+      });
     }
-    //setInterval(sendPing, 1000);
+    setInterval(sendPing, 1000);
+    */
     </script>
     
   <body onload="init()">
@@ -429,7 +450,7 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul id="navbar-left" class="nav navbar-nav">
             <!--<li class="active"><a href="#">Home</a></li>-->
-            <a class="btn btn-default btn-lg disabled" href="#" onclick="alert('blub'); return false">TEST</a>
+            <a id="connection" class="btn btn-lg" href="#" onclick="location.reload(); return false">TEST</a>
           </ul>
           
           <ul id="navbar-right" class="nav navbar-nav navbar-right">
