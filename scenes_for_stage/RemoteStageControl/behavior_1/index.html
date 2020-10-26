@@ -467,30 +467,35 @@
     
     
     // Experimental: feature in progress: make sure we have a good connection
-    /*
     var timePingSent = 0;
     function sendPing() {
       timePingSent = getTime();
       send("ALMemory", ["ping"], (e) => { 
         //console.log(e); 
         //console.log(getTime()-timePingSent); 
-        if(getTime() < timePingSent + 100) {
-          $("#connection").removeClass("btn-warning btn-danger")
-          $("#connection").addClass("btn-success")
-        } else if(getTime() < timePingSent + 500) {
-          $("#connection").removeClass("btn-success btn-danger")
-          $("#connection").addClass("btn-warning")
+        var button = $("#connection");
+        var delay = getTime()-timePingSent;
+        if(delay < 100) {
+          button.removeClass("btn-warning btn-danger");
+          button.addClass("btn-success");
+          button.text(delay);
+        } else if(delay < 500) {
+          button.removeClass("btn-success btn-danger");
+          button.addClass("btn-warning");
+          button.text(delay);
         } else {
-          $("#connection").removeClass("btn-warning btn-success")
-          $("#connection").addClass("btn-danger")
+          button.removeClass("btn-warning btn-success");
+          button.addClass("btn-danger");
+          button.text("DISCONECTED");
         }
       }, (e) => {
-        $("#connection").removeClass("btn-warning btn-success")
-        $("#connection").addClass("btn-danger")
+        var button = $("#connection");
+        button.removeClass("btn-warning btn-success");
+        button.addClass("btn-danger");
+        button.text("DISCONECTED");
       });
     }
-    setInterval(sendPing, 1000);
-    */
+    setInterval(sendPing, 3000);
     </script>
     
   <body onload="init()">
@@ -511,7 +516,7 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul id="navbar-left" class="nav navbar-nav">
             <!--<li class="active"><a href="#">Home</a></li>-->
-            <a id="connection" class="btn btn-lg" href="#" onclick="location.reload(); return false">TEST</a>
+            <a id="connection" class="btn btn-lg" href="#" onclick="location.reload(); return false">--</a>
           </ul>
           
           <ul id="navbar-right" class="nav navbar-nav navbar-right">
