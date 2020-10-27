@@ -42,7 +42,7 @@
         elif p == "blink":
             self.blink()
         elif p == "random":
-            self.rainbow()
+            self.random()
         elif p == "twinkle":
             self.twinkle()
         elif p == "rainbow":
@@ -148,7 +148,7 @@ class MyClass(GeneratedClass):
         self.isRunning = True
         while self.isRunning:
             # wait between 1 and 7 seconds like in Autonomous blinking
-            wait_time = random.randint( 1, 1 )
+            wait_time = random.randint( 1, 7 )
             self.delayed = qi.async(self.timerOutput, delay=wait_time * 1000 * 1000)
             self.delayed.wait()
 
@@ -253,7 +253,7 @@ class MyClass(GeneratedClass):
 		GeneratedClass.__init__(self)
 
 	def onInput_onStart(self):
-		self.onStopped([0, 0, 0])]]></content></script><pluginContent><color>#000000</color></pluginContent><Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" /><Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="To send the color on the output." id="2" /><Output name="onStopped" type="2" type_size="3" nature="1" inner="0" tooltip="[R,G,B] with R, G and B between 0 and 255." id="3" /></Box><Link inputowner="15" indexofinput="2" outputowner="16" indexofoutput="3" /><Link inputowner="16" indexofinput="2" outputowner="0" indexofoutput="2" /><Link inputowner="0" indexofinput="3" outputowner="15" indexofoutput="3" /></Diagram></BehaviorKeyframe></BehaviorLayer></Timeline></Box><Box name="rainbow" id="5" localization="8" tooltip="Set the color of one eye LED. Note that you must open the box to enter the color." x="696" y="399"><bitmap>media/images/box/interaction/LED.png</bitmap><script language="4"><content><![CDATA[class MyClass(GeneratedClass):
+		self.onStopped([0, 0, 0])]]></content></script><pluginContent><color>#000000</color></pluginContent><Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" /><Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="To send the color on the output." id="2" /><Output name="onStopped" type="2" type_size="3" nature="1" inner="0" tooltip="[R,G,B] with R, G and B between 0 and 255." id="3" /></Box><Link inputowner="15" indexofinput="2" outputowner="16" indexofoutput="3" /><Link inputowner="16" indexofinput="2" outputowner="0" indexofoutput="2" /><Link inputowner="0" indexofinput="3" outputowner="15" indexofoutput="3" /></Diagram></BehaviorKeyframe></BehaviorLayer></Timeline></Box><Box name="rainbow" id="5" localization="8" tooltip="Set the color of one eye LED. Note that you must open the box to enter the color." x="705" y="369"><bitmap>media/images/box/interaction/LED.png</bitmap><script language="4"><content><![CDATA[class MyClass(GeneratedClass):
     def __init__(self):
         GeneratedClass.__init__(self, False)
 
