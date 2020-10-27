@@ -10,8 +10,9 @@
         <BehaviorDescription name="behavior" src="Bcorrect" xar="behavior.xar" />
         <BehaviorDescription name="behavior" src="Ccorrect" xar="behavior.xar" />
         <BehaviorDescription name="behavior" src="Dcorrect" xar="behavior.xar" />
-        <BehaviorDescription name="behavior" src="CallFromFuture" xar="behavior.xar" />
         <BehaviorDescription name="behavior" src="CallFromFuture800" xar="behavior.xar" />
+        <BehaviorDescription name="behavior" src="SetStiffnessOn" xar="behavior.xar" />
+        <BehaviorDescription name="behavior" src="SetStiffnessOff" xar="behavior.xar" />
     </BehaviorDescriptions>
     <Dialogs />
     <Resources>
@@ -20,7 +21,6 @@
         <File name="Bcorrect" src="html/vid/Bcorrect.mp4" />
         <File name="Ccorrect" src="html/vid/Ccorrect.mp4" />
         <File name="Dcorrect" src="html/vid/Dcorrect.mp4" />
-        <File name="callfromfuture_720" src="html/vid/callfromfuture_720.mp4" />
         <File name="callfromfuture_800" src="html/vid/callfromfuture_800.mp4" />
     </Resources>
     <Topics />
