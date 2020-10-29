@@ -81,6 +81,7 @@ class MyClass(GeneratedClass):
     def onLoad(self):
         self.bIsRunning = False
         self.leds = self.session().service("ALLeds")
+        self.colors = ["green", "blue", "white", "yellow", "cyan"]
 
     def onUnload(self):
         #puts code for box cleanup here
@@ -96,7 +97,7 @@ class MyClass(GeneratedClass):
         self.bMustStop = False
         while( not self.bMustStop ):
             rRandTime = random.uniform(0.0,2.0)
-            self.leds.fadeRGB("FaceLeds", 256*random.randint(0,255) + 256*256*random.randint(0,255) + random.randint(0,255), rRandTime)
+            self.leds.fadeRGB("FaceLeds", random.choice(self.colors), rRandTime)
             time.sleep(random.uniform(0.0,3.0))
         self.bIsRunning = False
         self.onStopped()
