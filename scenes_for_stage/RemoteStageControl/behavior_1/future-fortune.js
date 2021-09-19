@@ -244,12 +244,13 @@ pageData =
       ]
     },
     {"type":"headline", "title":"Eyes", "items":[
-          {"type":"blocking", "title":"OFF", "actions":[{"service":"ALMemory", "call":["raiseEvent","eyes","off"]}]},
+        {"type":"blocking", "title":"OFF", "actions":[{"service":"ALMemory", "call":["raiseEvent","eyes","off"]}]},
         //{"type":"blocking", "title":"PURPLE", "actions":[{"service":"ALMemory", "call":["raiseEvent","eyes", 0x009900FF]}]},
         {"type":"blocking", "title":"BLUE", "actions":[{"service":"ALMemory", "call":["raiseEvent","eyes","blue"]}]},
         {"type":"blocking", "title":"GREEN", "actions":[{"service":"ALMemory", "call":["raiseEvent","eyes","green"]}]},
         {"type":"blocking", "title":"YELLOW", "actions":[{"service":"ALMemory", "call":["raiseEvent","eyes","yellow"]}]},
         {"type":"blocking", "title":"CYAN", "actions":[{"service":"ALMemory", "call":["raiseEvent","eyes","cyan"]}]},
+        {"type":"blocking", "title":"BLACK", "actions":[{"service":"ALMemory", "call":["raiseEvent","eyes",0x00000000]}]},
         //{"type":"blocking", "title":"PINK", "actions":[{"service":"ALMemory", "call":["raiseEvent","eyes",0x00FF0099]}]},
         {"type":"blocking", "title":"RAINBOW", "actions":[{"service":"ALMemory", "call":["raiseEvent","eyes","rainbow"]}]},
         {"type":"blocking", "title":"RANDOM", "actions":[{"service":"ALMemory", "call":["raiseEvent","eyes","random"]}]},
@@ -259,10 +260,10 @@ pageData =
         //{"type":"blocking", "title":"RASTA", "actions":[{"service":"ALLeds", "call":["rasta",10]}]},
         //{"type":"blocking", "title":"RND", "actions":[{"service":"ALLeds", "call":["randomEyes",10]}]},
           
-          //{"type":"blocking", "title":"start led circle eyes", "actions":[{"service":"ALBehaviorManager", "call":["startBehavior","animations/LED/CircleEyes"]}]},
+        //{"type":"blocking", "title":"start led circle eyes", "actions":[{"service":"ALBehaviorManager", "call":["startBehavior","animations/LED/CircleEyes"]}]},
         //{"type":"blocking", "title":"stop led circle eyes", "actions":[{"service":"ALBehaviorManager", "call":["stopBehavior","animations/LED/CircleEyes"]}]}
           
-          {"type":"button", "title":"Tablet:BLACK", "actions":[{"service":"ALAnimatedSpeech", "call":["say","$theater_show_image=black "]}]}
+        {"type":"button", "title":"Tablet:BLACK", "actions":[{"service":"ALAnimatedSpeech", "call":["say","$theater_show_image=black "]}]}
       ]
     },
     {"type":"headline", "title":"Animations", "items":[
@@ -296,6 +297,11 @@ pageData =
         {"type":"blocking", "title":"Hey_1", "actions":[{"service":"ALAnimatedSpeech", "call":["say","^run(animations/Stand/Gestures/Hey_1)"]}]},
         {"type":"blocking", "title":"ThinkingLoop_1", "actions":[{"service":"ALAnimatedSpeech", "call":["say","^run(animations/Stand/BodyTalk/Thinking/ThinkingLoop_1)"]}]},
         {"type":"blocking", "title":"ThinkingLoop_2", "actions":[{"service":"ALAnimatedSpeech", "call":["say","^run(animations/Stand/BodyTalk/Thinking/ThinkingLoop_2)"]}]},
+        
+        {"type":"blocking", "title":"BowShort_1", "actions":[{"service":"ALAnimatedSpeech", "call":["say","^run(animations/Stand/Gestures/BowShort_1)"]}]},
+        {"type":"blocking", "title":"BowShort_2", "actions":[{"service":"ALAnimatedSpeech", "call":["say","^run(animations/Stand/Gestures/BowShort_2)"]}]},
+        {"type":"blocking", "title":"BowShort_3", "actions":[{"service":"ALAnimatedSpeech", "call":["say","^run(animations/Stand/Gestures/BowShort_3)"]}]},
+        
         {"type":"blocking", "title":"Speaking Motion", "actions":[{"service":"ALAnimatedSpeech", "call":["say","$theater_show_image=black $eyes=blink \\pau=60000\\ "]}]}
       ]
     }
