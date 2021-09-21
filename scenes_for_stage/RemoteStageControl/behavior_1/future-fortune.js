@@ -20,10 +20,7 @@ pageData =
     {"type":"non-blocking", "title":"Safety On", "actions":[{"service":"ALMotion", "call":["setExternalCollisionProtectionEnabled","All", 1]}],"color":"blue"},
     {"type":"non-blocking", "title":"Safety Off", "actions":[{"service":"ALMotion", "call":["setExternalCollisionProtectionEnabled","All", 0]}],"color":"blue"},
     {"type":"non-blocking", "title":"Rest", "actions":[{"service":"ALMotion", "call":["rest"]}],"color":"red"},
-    {"type":"non-blocking", "title":"Wake Up", "actions":[
-      {"service":"ALMotion", "call":["setExternalCollisionProtectionEnabled","All", 1]},
-      {"service":"ALMotion", "call":["wakeUp"]}],"color":"red"
-    }
+    {"type":"non-blocking", "title":"Wake Up", "actions":[{"service":"ALMotion", "call":["wakeUp"]}],"color":"red"}
   ],
   "scenes":[
     {"type":"headline", "title":"2 R.U.R.", "items":[
@@ -220,10 +217,11 @@ pageData =
         {"type":"button", "title":"9 D Correct", "actions":[
           {"service":"ALAnimatedSpeech", "call":["say","$eyes=blink ^run(theater_playvideo/Dcorrect)"]}
         ]},
+        /*
         {"type":"button", "title":"9 Picture D Correct", "actions":[
           {"service":"ALAnimatedSpeech", "call":["say","$eyes=blink $theater_show_image=answerD "]}
-        ]},
-        {"type":"button", "title":"9 Picture Black Screen", "actions":[
+        ]},*/
+        {"type":"button", "title":"9 Black Screen", "actions":[
           {"service":"ALAnimatedSpeech", "call":["say","$eyes=blink $theater_show_image=black "]}
         ]},
         {"type":"button", "title":"9 Happy Eyes (Correct answer!)", "actions":[
