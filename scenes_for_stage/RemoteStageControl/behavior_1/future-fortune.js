@@ -7,8 +7,12 @@ pageData =
     {"type":"non-blocking", "title":"Head left", "actions":[{"service":"ALBehaviorManager", "call":["startBehavior","theaterhelpers/fixHeadLeft"]}],"color":"white"},
     {"type":"non-blocking", "title":"Head center", "actions":[{"service":"ALBehaviorManager", "call":["startBehavior","theaterhelpers/fixHead"]}],"color":"white"},
     {"type":"non-blocking", "title":"Head right", "actions":[{"service":"ALBehaviorManager", "call":["startBehavior","theaterhelpers/fixHeadRight"]}],"color":"white"},
-    {"type":"non-blocking", "title":"BasicAwareness On", "actions":[{"service":"ALBehaviorManager", "call":["startBehavior","theaterhelpers/reanableBasicAwareness"]}],"color":"yellow"},
-    {"type":"non-blocking", "title":"BasicAwareness Off", "actions":[{"service":"ALBehaviorManager", "call":["startBehavior","theaterhelpers/stopBasicAwareness"]}],"color":"yellow"},
+    //{"type":"non-blocking", "title":"BasicAwareness On (old)", "actions":[{"service":"ALBehaviorManager", "call":["startBehavior","theaterhelpers/reanableBasicAwareness"]}],"color":"yellow"},
+    //{"type":"non-blocking", "title":"BasicAwareness Off (old)", "actions":[{"service":"ALBehaviorManager", "call":["startBehavior","theaterhelpers/stopBasicAwareness"]}],"color":"yellow"},
+    
+    {"type":"non-blocking", "title":"BasicAwareness On", "actions": [{"service":"ALMemory", "call":["raiseEvent","basic_awareness","on" ]}],"color":"yellow"},
+    {"type":"non-blocking", "title":"BasicAwareness Off", "actions":[{"service":"ALMemory", "call":["raiseEvent","basic_awareness","off" ]}],"color":"yellow"},
+    
     //{"type":"non-blocking", "title":"BasicAwareness Off", "actions":[{"service":"ALBehaviorManager", "call":["startBehavior","theaterhelpers/disableAutonomousMovement"]}],"color":"yellow"},
     //{"type":"non-blocking", "title":"BasicAwareness On", "actions":[{"service":"ALBehaviorManager", "call":["startBehavior","theaterhelpers/enableAutonomousMovement"]}],"color":"yellow"},
     {"type":"non-blocking", "title":"Sound On", "actions":[{"service":"ALBehaviorManager", "call":["startBehavior","theaterhelpers/soundOn"]}],"color":"cyan"},
@@ -16,15 +20,18 @@ pageData =
     {"type":"non-blocking", "title":"Safety On", "actions":[{"service":"ALMotion", "call":["setExternalCollisionProtectionEnabled","All", 1]}],"color":"blue"},
     {"type":"non-blocking", "title":"Safety Off", "actions":[{"service":"ALMotion", "call":["setExternalCollisionProtectionEnabled","All", 0]}],"color":"blue"},
     {"type":"non-blocking", "title":"Rest", "actions":[{"service":"ALMotion", "call":["rest"]}],"color":"red"},
-    {"type":"non-blocking", "title":"Wake Up", "actions":[{"service":"ALMotion", "call":["wakeUp"]}],"color":"red"}
+    {"type":"non-blocking", "title":"Wake Up", "actions":[
+      {"service":"ALMotion", "call":["setExternalCollisionProtectionEnabled","All", 1]},
+      {"service":"ALMotion", "call":["wakeUp"]}],"color":"red"
+    }
   ],
   "scenes":[
     {"type":"headline", "title":"2 R.U.R.", "items":[
         {"type":"button", "title":"2.1 R.U.R. Screen black (Sound On, Awareness Off)", "actions":[
           {"service":"ALBehaviorManager", "call":["startBehavior","theaterhelpers/soundOn"]},
           {"service":"ALMotion", "call":["setExternalCollisionProtectionEnabled","All", 0]},
-          {"service":"ALBehaviorManager", "call":["startBehavior","theaterhelpers/stopBasicAwareness"]},
-          {"service":"ALAnimatedSpeech", "call":["say","$theater_show_image=black $eyes=off"]}
+          //{"service":"ALBehaviorManager", "call":["startBehavior","theaterhelpers/stopBasicAwareness"]},
+          {"service":"ALAnimatedSpeech", "call":["say","$theater_show_image=black $eyes=off $basic_awareness=off"]}
         ]},
         {"type":"button", "title":"2.2 R.U.R.", "actions":[
           {"service":"ALAnimatedSpeech", "call":["say","$theater_show_image=black $eyes=off \\vct=60\\ \\rspd=90\\ Send me to the stamping mill!"]}
@@ -57,8 +64,10 @@ pageData =
     },
     {"type":"headline", "title":"3 Rehearsal", "items":[
         {"type":"button", "title":"3.0 Rehearsal - Awareness On + Sound Off", "actions":[
-          {"service":"ALBehaviorManager", "call":["startBehavior","theaterhelpers/soundOff"]},
-          {"service":"ALBehaviorManager", "call":["startBehavior","theaterhelpers/reanableBasicAwareness"]}
+          //{"service":"ALBehaviorManager", "call":["startBehavior","theaterhelpers/soundOff"]},
+          //{"service":"ALMemory", "call":["raiseEvent","basic_awareness","on" ]}
+          {"service":"ALAnimatedSpeech", "call":["say","$basic_awareness=on $active_listening=on $eyes=blink ^run(theaterhelpers/soundOff)" ]}
+          //{"service":"ALBehaviorManager", "call":["startBehavior","theaterhelpers/reanableBasicAwareness"]}
         ]},
         {"type":"button", "title":"3.1 Rehearsal", "actions":[
           //{"service":"ALAnimatedSpeech", "call":["say","$theater_show_image=white ^run(animations/Stand/Emotions/Negative/Disappointed_1) ^run(rur_rehearsal/text_1)"]}
@@ -175,8 +184,8 @@ pageData =
     },
     {"type":"headline", "title":"7 Video Call", "items":[
         {"type":"button", "title":"7.1 Video Call Collapse", "actions":[
-          {"service":"ALAnimatedSpeech", "call":["say","$theater_show_image=black $eyes=off ^run(theater_playvideo/collapse) $theater_show_image=black"]},
-          {"service":"ALBehaviorManager", "call":["startBehavior","theaterhelpers/stopBasicAwareness"]},
+          {"service":"ALAnimatedSpeech", "call":["say","$theater_show_image=black $eyes=off $basic_awareness=off ^run(theater_playvideo/collapse) $theater_show_image=black"]},
+          //{"service":"ALBehaviorManager", "call":["startBehavior","theaterhelpers/stopBasicAwareness"]},
           {"service":"ALMotion", "call":["setExternalCollisionProtectionEnabled","All", 1]}
         ]},
         {"type":"button", "title":"7.2 Video Call from Future", "actions":[
@@ -187,8 +196,8 @@ pageData =
         ]},*/
         {"type":"button", "title":"7.3 Video Call Awaken", "actions":[
           {"service":"ALMotion", "call":["setExternalCollisionProtectionEnabled","All", 0]},
-          {"service":"ALBehaviorManager", "call":["startBehavior","theaterhelpers/reanableBasicAwareness"]},
-          {"service":"ALAnimatedSpeech", "call":["say","$theater_show_image=black $eyes=blink \\wait=1\\ ^run(theater_playvideo/SetStiffnessOn) ^run(animations/Stand/Emotions/Negative/Surprise_3) ^run(animations/Stand/Gestures/Surprised_1) "]}
+          //{"service":"ALBehaviorManager", "call":["startBehavior","theaterhelpers/reanableBasicAwareness"]},
+          {"service":"ALAnimatedSpeech", "call":["say","$theater_show_image=black $eyes=blink $basic_awareness=on \\wait=1\\ ^run(theater_playvideo/SetStiffnessOn) ^run(animations/Stand/Emotions/Negative/Surprise_3) ^run(animations/Stand/Gestures/Surprised_1) "]}
         ]}
       ]
     },
@@ -271,8 +280,7 @@ pageData =
         //{"type":"blocking", "title":"ALGETTracking", "actions":[{"service":"ALBasicAwareness", "call":["getTrackingMode"], "sync":true}]},
         //{"type":"blocking", "title":"ALOFF", "actions":[{"service":"ALAutonomousLife", "call":["setState", "disabled"]}]},
         //{"type":"blocking", "title":"Autonomous Life Normal", "actions":[{"service":"ALAutonomousLife", "call":["setState", "solitary"]}], "color":"yellow"},
-        //{"type":"blocking", "title":"Autonomous Life Aktiv", "actions":[
-        //{"service":"ALAutonomousLife", "call":["setState", "interactive"], "sync":true}], "color":"yellow"},
+        //{"type":"blocking", "title":"Autonomous Life Aktiv", "actions":[{"service":"ALAutonomousLife", "call":["setState", "interactive"], "sync":true}], "color":"yellow"},
         //{"type":"blocking", "title":"Set Tracking", "actions":[{"service":"ALBasicAwareness", "call":["setTrackingMode", "Head"]}], "color":"yellow"},
 
         {"type":"blocking", "title":"Wakeup", "actions":[{"service":"ALAnimatedSpeech", "call":["say","^run(animations/Stand/Waiting/WakeUp_1)"]}]},
@@ -302,7 +310,10 @@ pageData =
         {"type":"blocking", "title":"BowShort_2", "actions":[{"service":"ALAnimatedSpeech", "call":["say","^run(animations/Stand/Gestures/BowShort_2)"]}]},
         {"type":"blocking", "title":"BowShort_3", "actions":[{"service":"ALAnimatedSpeech", "call":["say","^run(animations/Stand/Gestures/BowShort_3)"]}]},
         
-        {"type":"blocking", "title":"Speaking Motion", "actions":[{"service":"ALAnimatedSpeech", "call":["say","$theater_show_image=black $eyes=blink \\pau=60000\\ "]}]}
+        {"type":"blocking", "title":"Speaking Motion", "actions":[{"service":"ALAnimatedSpeech", "call":["say","$theater_show_image=black $eyes=blink \\pau=60000\\ "]}]},
+        //{"type":"blocking", "title":"Listening Motion On", "actions":[{"service":"ALSpeechRecognition", "call":["say","$theater_show_image=black $eyes=blink \\pau=60000\\ "]}]},
+        {"type":"non-blocking", "title":"Active Listening ON",  "actions":[{"service":"ALMemory", "call":["raiseEvent","active_listening","on" ]}], "color":"green"},
+        {"type":"non-blocking", "title":"Active Listening OFF", "actions":[{"service":"ALMemory", "call":["raiseEvent","active_listening","off"]}], "color":"red"}
       ]
     }
   ]
