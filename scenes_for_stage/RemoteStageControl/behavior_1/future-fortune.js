@@ -7,9 +7,16 @@ pageData =
     {"type":"non-blocking", "title":"Head left", "actions":[{"service":"ALBehaviorManager", "call":["startBehavior","theaterhelpers/fixHeadLeft"]}],"color":"white"},
     {"type":"non-blocking", "title":"Head center", "actions":[{"service":"ALBehaviorManager", "call":["startBehavior","theaterhelpers/fixHead"]}],"color":"white"},
     {"type":"non-blocking", "title":"Head right", "actions":[{"service":"ALBehaviorManager", "call":["startBehavior","theaterhelpers/fixHeadRight"]}],"color":"white"},
+    
+    // experimental
+    //{"type":"non-blocking", "title":"Look left (stimulus)", "actions":[{"service":"ALBasicAwareness", "call":["triggerStimulus",0,2,1.8]}],"color":"white"},
+    //{"type":"non-blocking", "title":"Look left (tracker)", "actions":[{"service":"ALTracker", "call":["lookAt",0,2,1.8]}],"color":"white"},
+    //{"type":"non-blocking", "title":"Look Around", "actions":[{"service":"ALTracker", "call":["toggleSearch"]}],"color":"white"},
+    //{"type":"non-blocking", "title":"Pause Awareness", "actions":[{"service":"ALBasicAwareness", "call":["pauseAwareness"]}],"color":"white"},
+    //{"type":"non-blocking", "title":"Resume Awareness", "actions":[{"service":"ALBasicAwareness", "call":["resumeAwareness"]}],"color":"white"},
+    
     //{"type":"non-blocking", "title":"BasicAwareness On (old)", "actions":[{"service":"ALBehaviorManager", "call":["startBehavior","theaterhelpers/reanableBasicAwareness"]}],"color":"yellow"},
     //{"type":"non-blocking", "title":"BasicAwareness Off (old)", "actions":[{"service":"ALBehaviorManager", "call":["startBehavior","theaterhelpers/stopBasicAwareness"]}],"color":"yellow"},
-    
     {"type":"non-blocking", "title":"BasicAwareness On", "actions": [{"service":"ALMemory", "call":["raiseEvent","basic_awareness","on" ]}],"color":"yellow"},
     {"type":"non-blocking", "title":"BasicAwareness Off", "actions":[{"service":"ALMemory", "call":["raiseEvent","basic_awareness","off" ]}],"color":"yellow"},
     
