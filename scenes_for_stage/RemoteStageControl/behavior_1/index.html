@@ -299,6 +299,15 @@
       }, handler);
     }
     
+    function sendSync(proxy, call, handler) {
+      sendJSON(
+      {
+        "service": proxy,
+        "call": call,
+        "sync": true
+      }, handler);
+    }
+    
     function sendJSON(json, handler) {
       sendData(JSON.stringify(json), handler);
     }
@@ -560,14 +569,20 @@
       }
     }
     
-    
+
     // feature in progress: make sure we have a good connection
-    var timePingSent = 0;
-    function sendPing() {
+    var timePingReceived = 0;
+    function updateStatus() {
       timePingSent = getTime();
-      send("ALMemory", ["ping"], (e) => { console.log(e); console.log(getTime()-timePingSent); });
+      sendSync("ALMemory", ["ping"], (e) => { timePingReceived = getTime();   });
+      sendSync("ALBattery", ["getBatteryCharge"], (e) => { console.log(e); $("#infobattery").text(e); });
+      sendSync("ALAutonomousLife", ["getState"], (e) => { console.log(e); $("#infoautonomy").text(e); });
+      
+      //console.log(getTime() - timePingReceived);
+      //$("#infobattery").text(getTime() - timePingReceived);
     }
-    //setInterval(sendPing, 1000);
+    //setInterval(updateStatus, 1000);
+    
     </script>
     
   <body onload="init()">
@@ -587,6 +602,11 @@
         
         <div id="navbar" class="navbar-collapse collapse">
           <ul id="navbar-left" class="nav navbar-nav">
+            <!-- show robot status - in progress -->
+            <!--<li><a class="btn btn-default btn-lg disabled" id="infoping">-</a></li>-->
+            <!--<li><a class="btn btn-default btn-lg disabled" id="infobattery">0%</a></li>-->
+            <!--<li><a class="btn btn-default btn-lg disabled" id="infoautonomy">-</a></li>-->
+            
             <!--<li class="active"><a href="#">Home</a></li>-->
             <!--<a class="btn btn-default btn-lg disabled" href="#" onclick="alert('blub'); return false">TEST</a>-->
             <!--<a class="btn btn-lg btn-primary" href="#" id="keycontrol">Key Control</a>-->
