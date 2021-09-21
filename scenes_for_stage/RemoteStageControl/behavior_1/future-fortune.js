@@ -60,17 +60,18 @@ pageData =
       ]
     },
     {"type":"headline", "title":"3 Rehearsal", "items":[
+        /*
         {"type":"button", "title":"3.0 Rehearsal - Awareness On + Sound Off", "actions":[
           //{"service":"ALBehaviorManager", "call":["startBehavior","theaterhelpers/soundOff"]},
           //{"service":"ALMemory", "call":["raiseEvent","basic_awareness","on" ]}
           {"service":"ALAnimatedSpeech", "call":["say","$basic_awareness=on $active_listening=on $eyes=blink ^run(theaterhelpers/soundOff)" ]}
           //{"service":"ALBehaviorManager", "call":["startBehavior","theaterhelpers/reanableBasicAwareness"]}
-        ]},
+        ]},*/
         {"type":"button", "title":"3.1 Rehearsal", "actions":[
           //{"service":"ALAnimatedSpeech", "call":["say","$theater_show_image=white ^run(animations/Stand/Emotions/Negative/Disappointed_1) ^run(rur_rehearsal/text_1)"]}
           //{"service":"ALBehaviorManager", "call":["startBehavior","theaterhelpers/soundOff"]},
           //{"service":"ALBehaviorManager", "call":["startBehavior","theaterhelpers/reanableBasicAwareness"]},
-          {"service":"ALAnimatedSpeech", "call":["say","$theater_show_image=white $eyes=blink ^run(animations/Stand/Emotions/Negative/Disappointed_1) ^run(animations/Stand/Emotions/Neutral/Confused_1) \\pau=25000\\"]}
+          {"service":"ALAnimatedSpeech", "call":["say","$basic_awareness=on $active_listening=on ^run(theaterhelpers/soundOff) $theater_show_image=white $eyes=blink ^run(animations/Stand/Emotions/Negative/Disappointed_1) ^run(animations/Stand/Emotions/Neutral/Confused_1) \\pau=25000\\"]}
         ]},
         {"type":"button", "title":"3.2 Rehearsal", "actions":[
           {"service":"ALAnimatedSpeech", "call":["say","$theater_show_image=white $eyes=blink ^run(rur_rehearsal/text_2)"]}
@@ -81,17 +82,38 @@ pageData =
         {"type":"button", "title":"3.4 Rehearsal", "actions":[
           {"service":"ALAnimatedSpeech", "call":["say","$theater_show_image=white $eyes=blink ^run(rur_rehearsal/text_4)"]}
         ]},
+        {"type":"button", "title":"3.4.1 Turn Left 45deg", "actions":[
+          {"service":"ALMotion", "call":["moveTo", 0, 0, 0.785]}
+        ]},
+        {"type":"button", "title":"3.4.2 Turn Right 90deg", "actions":[
+          {"service":"ALMotion", "call":["moveTo", 0, 0, -1.571]}
+        ]},
+        {"type":"button", "title":"3.4.3 Turn Left 45deg (Face Front)", "actions":[
+          {"service":"ALMotion", "call":["moveTo", 0, 0, 0.785]}
+        ]},
         {"type":"button", "title":"3.5 Rehearsal", "actions":[
           {"service":"ALAnimatedSpeech", "call":["say","$theater_show_image=white $eyes=blink ^run(rur_rehearsal/text_5)"]}
         ]},
         {"type":"button", "title":"3.6 Rehearsal", "actions":[
           {"service":"ALAnimatedSpeech", "call":["say","$theater_show_image=white $eyes=blink ^run(rur_rehearsal/text_6)"]}
         ]},
+        {"type":"button", "title":"3.6.1 Turn Right 45deg", "actions":[
+          {"service":"ALMotion", "call":["moveTo", 0, 0, -0.785]}
+        ]},
         {"type":"button", "title":"3.7 Rehearsal", "actions":[
           {"service":"ALAnimatedSpeech", "call":["say","$theater_show_image=white $eyes=blink ^run(animations/Stand/Waiting/Robot_1) ^run(rur_rehearsal/text_7)"]}
         ]},
+        {"type":"button", "title":"3.7.1 Turn Left 45deg", "actions":[
+          {"service":"ALMotion", "call":["moveTo", 0, 0, 0.785]}
+        ]},
         {"type":"button", "title":"3.8 Rehearsal", "actions":[
           {"service":"ALAnimatedSpeech", "call":["say","$theater_show_image=white $eyes=blink ^run(animations/Stand/Waiting/AirGuitar_1) ^run(rur_rehearsal/text_8)"]}
+        ]},
+        {"type":"button", "title":"3.8.1 Turn Right 45deg", "actions":[
+          {"service":"ALMotion", "call":["moveTo", 0, 0, -0.785]}
+        ]},
+        {"type":"button", "title":"3.8.2 Turn Left 90deg", "actions":[
+          {"service":"ALMotion", "call":["moveTo", 0, 0, 1.571]}
         ]},
         {"type":"button", "title":"3.9 Rehearsal", "actions":[
           {"service":"ALAnimatedSpeech", "call":["say","$theater_show_image=white $eyes=blink ^run(animations/Stand/Emotions/Negative/Exhausted_1) ^run(rur_rehearsal/text_9)"]}
@@ -101,6 +123,15 @@ pageData =
         ]},
         {"type":"button", "title":"3.11 Rehearsal", "actions":[
           {"service":"ALAnimatedSpeech", "call":["say","$theater_show_image=white $eyes=blink ^run(rur_rehearsal/text_11)"]}
+        ]},
+        {"type":"button", "title":"3.11.1 Turn Left 45deg", "actions":[
+          {"service":"ALMotion", "call":["moveTo", 0, 0, 0.785]}
+        ]},
+        {"type":"button", "title":"3.11.2 Turn Right 45deg", "actions":[
+          {"service":"ALMotion", "call":["moveTo", 0, 0, -0.785]}
+        ]},
+        {"type":"button", "title":"3.11.3 Turn Left 45deg", "actions":[
+          {"service":"ALMotion", "call":["moveTo", 0, 0, 0.785]}
         ]},
         {"type":"button", "title":"3.12 Rehearsal", "actions":[
           {"service":"ALAnimatedSpeech", "call":["say","$theater_show_image=white $eyes=blink ^run(rur_rehearsal/text_11)"]}
@@ -239,6 +270,12 @@ pageData =
         {"type":"button", "title":"10.1 5th Element - LIGHT", "actions":[
           {"service":"ALAnimatedSpeech", "call":["say","^run(animations/Stand/Reactions/LightShine_1)"]}
         ]},
+        {"type":"button", "title":"10.1.1 Turn Left 45deg", "actions":[
+          {"service":"ALMotion", "call":["moveTo", 0, 0, 0.785]}
+        ]},
+        {"type":"button", "title":"10.1.2 Turn Right 45deg", "actions":[
+          {"service":"ALMotion", "call":["moveTo", 0, 0, -0.785]}
+        ]},
         {"type":"button", "title":"10.2 5th Element - MYSTIC", "actions":[
           {"service":"ALAnimatedSpeech", "call":["say","^run(animations/Stand/Waiting/MysticalPower_1)"]}
         ]},
@@ -280,6 +317,7 @@ pageData =
         //{"type":"blocking", "title":"Autonomous Life Normal", "actions":[{"service":"ALAutonomousLife", "call":["setState", "solitary"]}], "color":"yellow"},
         //{"type":"blocking", "title":"Autonomous Life Aktiv", "actions":[{"service":"ALAutonomousLife", "call":["setState", "interactive"], "sync":true}], "color":"yellow"},
         //{"type":"blocking", "title":"Set Tracking", "actions":[{"service":"ALBasicAwareness", "call":["setTrackingMode", "Head"]}], "color":"yellow"},
+        //{"type":"blocking", "title":"Turn", "actions":[{"service":"ALMotion", "call":["moveTo", 0, 0, 1.54]}], "color":"yellow"},
 
         {"type":"blocking", "title":"Wakeup", "actions":[{"service":"ALAnimatedSpeech", "call":["say","^run(animations/Stand/Waiting/WakeUp_1)"]}]},
         {"type":"blocking", "title":"Knight", "actions":[{"service":"ALAnimatedSpeech", "call":["say","$eyes=red ^run(animations/Stand/Waiting/Knight_1)"]}]},
