@@ -9,11 +9,11 @@ pageData =
     {"type":"non-blocking", "title":"Head right", "actions":[{"service":"ALBehaviorManager", "call":["startBehavior","theaterhelpers/fixHeadRight"]}],"color":"white"},
     
     // experimental
-    //{"type":"non-blocking", "title":"Look left (stimulus)", "actions":[{"service":"ALBasicAwareness", "call":["triggerStimulus",0,2,1.8]}],"color":"white"},
-    //{"type":"non-blocking", "title":"Look left (tracker)", "actions":[{"service":"ALTracker", "call":["lookAt",0,2,1.8]}],"color":"white"},
-    //{"type":"non-blocking", "title":"Look Around", "actions":[{"service":"ALTracker", "call":["toggleSearch"]}],"color":"white"},
-    //{"type":"non-blocking", "title":"Pause Awareness", "actions":[{"service":"ALBasicAwareness", "call":["pauseAwareness"]}],"color":"white"},
-    //{"type":"non-blocking", "title":"Resume Awareness", "actions":[{"service":"ALBasicAwareness", "call":["resumeAwareness"]}],"color":"white"},
+    //{"type":"non-blocking", "title":"Look left (stimulus)", "actions":[{"service":"ALBasicAwareness", "call":["triggerStimulus",0,2,1.8]}], "sync":true, "color":"white"},
+    //{"type":"non-blocking", "title":"Look left (tracker)", "actions":[{"service":"ALTracker", "call":["lookAt",0,2,1.8]}], "sync":true, "color":"white"},
+    //{"type":"non-blocking", "title":"Look Around", "actions":[{"service":"ALTracker", "call":["toggleSearch"]}], "sync":true, "color":"white"},
+    //{"type":"non-blocking", "title":"Pause Awareness", "actions":[{"service":"ALBasicAwareness", "call":["pauseAwareness"]}], "sync":true, "color":"white"},
+    //{"type":"non-blocking", "title":"Resume Awareness", "actions":[{"service":"ALBasicAwareness", "call":["resumeAwareness"]}], "sync":true, "color":"white"},
     
     //{"type":"non-blocking", "title":"BasicAwareness On (old)", "actions":[{"service":"ALBehaviorManager", "call":["startBehavior","theaterhelpers/reanableBasicAwareness"]}],"color":"yellow"},
     //{"type":"non-blocking", "title":"BasicAwareness Off (old)", "actions":[{"service":"ALBehaviorManager", "call":["startBehavior","theaterhelpers/stopBasicAwareness"]}],"color":"yellow"},
@@ -80,6 +80,7 @@ pageData =
           //{"service":"ALBehaviorManager", "call":["startBehavior","theaterhelpers/reanableBasicAwareness"]},
           {"service":"ALAnimatedSpeech", "call":["say","$basic_awareness=on $active_listening=on ^run(theaterhelpers/soundOff) $theater_show_image=white $eyes=blink ^run(animations/Stand/Emotions/Negative/Disappointed_1) ^run(animations/Stand/Emotions/Neutral/Confused_1) \\pau=25000\\"]}
         ]},
+        /*
         {"type":"button", "title":"3.2 Rehearsal", "actions":[
           {"service":"ALAnimatedSpeech", "call":["say","$theater_show_image=white $eyes=blink ^run(rur_rehearsal/text_2)"]}
         ]},
@@ -107,15 +108,19 @@ pageData =
         {"type":"button", "title":"3.6.1 Turn Right 45deg", "actions":[
           {"service":"ALMotion", "call":["moveTo", 0, 0, -0.785]}
         ]},
-        {"type":"button", "title":"3.7 Rehearsal", "actions":[
+        */
+        {"type":"button", "title":"3.7 Shaking head", "actions":[
           {"service":"ALAnimatedSpeech", "call":["say","$theater_show_image=white $eyes=blink ^run(animations/Stand/Waiting/Robot_1) ^run(rur_rehearsal/text_7)"]}
         ]},
+        /*
         {"type":"button", "title":"3.7.1 Turn Left 45deg", "actions":[
           {"service":"ALMotion", "call":["moveTo", 0, 0, 0.785]}
         ]},
-        {"type":"button", "title":"3.8 Rehearsal", "actions":[
+        */
+        {"type":"button", "title":"3.8 Air Guitar", "actions":[
           {"service":"ALAnimatedSpeech", "call":["say","$theater_show_image=white $eyes=blink ^run(animations/Stand/Waiting/AirGuitar_1) ^run(rur_rehearsal/text_8)"]}
         ]},
+        /*
         {"type":"button", "title":"3.8.1 Turn Right 45deg", "actions":[
           {"service":"ALMotion", "call":["moveTo", 0, 0, -0.785]}
         ]},
@@ -143,6 +148,13 @@ pageData =
         {"type":"button", "title":"3.12 Rehearsal", "actions":[
           {"service":"ALAnimatedSpeech", "call":["say","$theater_show_image=white $eyes=blink ^run(rur_rehearsal/text_11)"]}
         ]}
+        */
+        {"type":"button", "title":"3.13 Speaking Motion", "actions":[
+          {"service":"ALAnimatedSpeech", "call":["say","$theater_show_image=white $eyes=blink \\pau=60000\\ "]}
+        ]},
+        {"type":"non-blocking", "title":"Head left", "actions":[{"service":"ALBehaviorManager", "call":["startBehavior","theaterhelpers/fixHeadLeft"]}]},
+        {"type":"non-blocking", "title":"Head center", "actions":[{"service":"ALBehaviorManager", "call":["startBehavior","theaterhelpers/fixHead"]}]},
+        {"type":"non-blocking", "title":"Head right", "actions":[{"service":"ALBehaviorManager", "call":["startBehavior","theaterhelpers/fixHeadRight"]}]}
       ]
     },
     {"type":"headline", "title":"4 Dance", "items":[
@@ -262,9 +274,15 @@ pageData =
         {"type":"button", "title":"9 Black Screen", "actions":[
           {"service":"ALAnimatedSpeech", "call":["say","$eyes=blink $theater_show_image=black "]}
         ]},
+        /*
         {"type":"button", "title":"9 Happy Eyes (Correct answer!)", "actions":[
           {"service":"ALAnimatedSpeech", "call":["say","$eyes=rainbow \\pau=5000\\ $eyes=blink"]}
-        ]}
+        ]},*/
+        {"type":"non-blocking", "title":"BLINK", "actions":[{"service":"ALMemory", "call":["raiseEvent","eyes","blink"]}]},
+        {"type":"non-blocking", "title":"RAINBOW", "actions":[{"service":"ALMemory", "call":["raiseEvent","eyes","rainbow"]}]},
+        {"type":"non-blocking", "title":"Head left", "actions":[{"service":"ALBehaviorManager", "call":["startBehavior","theaterhelpers/fixHeadLeft"]}]},
+        {"type":"non-blocking", "title":"Head center", "actions":[{"service":"ALBehaviorManager", "call":["startBehavior","theaterhelpers/fixHead"]}]},
+        {"type":"non-blocking", "title":"Head right", "actions":[{"service":"ALBehaviorManager", "call":["startBehavior","theaterhelpers/fixHeadRight"]}]}
       ]
     },
     {"type":"headline", "title":"10 5th Element", "items":[
