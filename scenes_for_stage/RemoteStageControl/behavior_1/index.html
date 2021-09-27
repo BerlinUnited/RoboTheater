@@ -168,11 +168,19 @@
       // create a button list
       var buttonList = $('<ul class="list-group"></ul>').appendTo($(".panel-body", scene));
       for(var e of data['items']) {
-        var anchor = $('<a class="btn btn-default" href="#"><span class="glyphicon glyphicon-play"></span> ' + e['title'] + '</a>')
-          .click(blockingActionsExecutor(e['actions'], group_name));
         
-        // HACK: add too group manualy
-        buttonGroups[group_name].push(anchor);
+        var anchor;
+        
+        if (e['type'] == "non-blocking") {
+          anchor = $('<a class="btn btn-default" href="#"><span class="glyphicon glyphicon-play"></span> ' + e['title'] + '</a>')
+            .click(nonBlockingActionsExecutor(e['actions']));
+        } else {
+          anchor = $('<a class="btn btn-default" href="#"><span class="glyphicon glyphicon-play"></span> ' + e['title'] + '</a>')
+            .click(blockingActionsExecutor(e['actions'], group_name));
+            
+          // HACK: add too group manualy
+          buttonGroups[group_name].push(anchor);
+        }
         
         $('<li class="list-group-item"></li>').append(anchor).appendTo(buttonList);
       }
