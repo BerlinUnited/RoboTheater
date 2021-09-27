@@ -14,6 +14,8 @@
 
       [`ALBasicAwarenessProxy::resumeAwareness`](http://doc.aldebaran.com/2-5/naoqi/interaction/autonomousabilities/albasicawareness-api.html#ALBasicAwarenessProxy::resumeAwareness)
 
+       [`ALAutonomousLifeProxy::setAutonomousAbilityEnabled`](http://doc.aldebaran.com/2-5/naoqi/interaction/autonomouslife-api.html#ALAutonomousLifeProxy::setAutonomousAbilityEnabled__ssCR.b)
+      
     * disable basic awareness capabilities
 
 * Better attention
@@ -27,3 +29,11 @@
 
 * [`ALListeningMovementProxy::isRunning`](http://doc.aldebaran.com/2-5/naoqi/interaction/autonomousabilities/allisteningmovement-api.html#ALListeningMovementProxy::isRunning)
 
+* Safety Control
+
+  * [`ALAutonomousLifeProxy::setSafeguardEnabled`](http://doc.aldebaran.com/2-5/naoqi/interaction/autonomouslife-api.html#ALAutonomousLifeProxy::setSafeguardEnabled__ssCR.bCR)
+  * [`ALMotionProxy::setExternalCollisionProtectionEnabled`](http://doc.aldebaran.com/2-5/naoqi/motion/reflexes-external-collision-api.html#ALMotionProxy::setExternalCollisionProtectionEnabled__ssCR.bCR)
+  * [`ALMotionProxy::setDiagnosisEffectEnabled`](http://doc.aldebaran.com/2-5/naoqi/motion/reflexes-diagnosis-api.html#ALMotionProxy::setDiagnosisEffectEnabled__bCR)
+  * [`ALDiagnosisProxy::setEnableNotification`](http://doc.aldebaran.com/2-5/naoqi/diagnosis/aldiagnosis-api.html#ALDiagnosisProxy::setEnableNotification__b)
+  
+    
