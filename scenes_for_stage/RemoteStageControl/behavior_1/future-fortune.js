@@ -53,11 +53,16 @@ pageData =
         {"type":"button", "title":"2.2 R.U.R.", "actions":[
           {"service":"ALAnimatedSpeech", "call":["say","$theater_show_image=black $eyes=off \\vct=60\\ \\rspd=90\\ Send me to the stamping mill!"]}
         ]},
+        /*
         {"type":"button", "title":"2.3.1 R.U.R. Path 2", "actions":[
           {"service":"ALAnimatedSpeech", "call":["say","$theater_show_image=black $eyes=off ^run(rur_behaviors/path_2)"]}
         ]},
         {"type":"button", "title":"2.3.2 R.U.R.", "actions":[
           {"service":"ALAnimatedSpeech", "call":["say","$theater_show_image=black $eyes=off \\vct=60\\ \\rspd=90\\ \\wait=6\\ I won't work for you.  Put me into the stamping mill!"]}
+        ]},
+        */
+        {"type":"button", "title":"2.3 R.U.R. Path 2", "actions":[
+          {"service":"ALAnimatedSpeech", "call":["say","$theater_show_image=black $eyes=off ^run(rur_behaviors/path_2) \\vct=60\\ \\rspd=90\\ \\wait=6\\ I won't work for you.  Put me into the stamping mill!"]}
         ]},
         {"type":"button", "title":"2.5 R.U.R. Path 3", "actions":[
           {"service":"ALAnimatedSpeech", "call":["say","$theater_show_image=black $eyes=off \\vct=60\\ \\rspd=90\\ \\wait=6\\ ^start(rur_behaviors/path_3) You are not as strong as the Robots.  You are not as skillful as the Robots. The Robots can do everything. You only give orders. You do nothing but talk. ^wait(rur_behaviors/path_3)"]}
