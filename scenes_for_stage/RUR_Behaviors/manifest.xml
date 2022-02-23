@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<package version="0.0.1" uuid="rur_behaviors">
+<package uuid="rur_behaviors" version="0.0.1">
  <names>
   <name lang="en_US">RUR_Behaviors</name>
  </names>
@@ -40,7 +40,7 @@
   </behaviorContent>
  </contents>
  <requirements>
-  <naoqiRequirement maxVersion="2.5" minVersion="2.5"/>
+  <naoqiRequirement minVersion="2.5" maxVersion="2.5"/>
   <robotRequirement model="JULIETTE"/>
  </requirements>
 </package>
