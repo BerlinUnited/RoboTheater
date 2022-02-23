@@ -86,12 +86,12 @@
     }
     
     var colorsToClass = {
-      "white": "btn-default",
+      "white":  "btn-default",
       "yellow": "btn-warning",
-      "cyan": "btn-info",
-      "blue": "btn-primary",
-      "red": "btn-danger",
-      "green": "btn-success"
+      "cyan":   "btn-info",
+      "blue":   "btn-primary",
+      "red":    "btn-danger",
+      "green":  "btn-success"
     };
     
     function getClassForColor(color) {
@@ -347,7 +347,7 @@
         console.error(xhr.statusText);
         // also call the handler in case of error
         if(typeof handler !== "undefined") {
-          handler(xhr.statusText);
+          handler("??" + xhr.statusText);
         }
       };
       
@@ -582,14 +582,16 @@
     var timePingReceived = 0;
     function updateStatus() {
       timePingSent = getTime();
-      sendSync("ALMemory", ["ping"], (e) => { timePingReceived = getTime();   });
-      sendSync("ALBattery", ["getBatteryCharge"], (e) => { console.log(e); $("#infobattery").text(e); });
-      sendSync("ALAutonomousLife", ["getState"], (e) => { console.log(e); $("#infoautonomy").text(e); });
+      //sendSync("ALMemory", ["ping"], (e) => { timePingReceived = getTime();   });
+      sendSync("ALBattery", ["getBatteryCharge"], (e) => { console.log(e); $("#infobattery").text(e + "%"); });
+      //sendSync("ALAutonomousLife", ["getState"], (e) => { console.log(e); $("#infoautonomy").text(e); });
       
       //console.log(getTime() - timePingReceived);
       //$("#infobattery").text(getTime() - timePingReceived);
     }
-    //setInterval(updateStatus, 1000);
+
+    updateStatus();
+    setInterval(updateStatus, 10000);
     
     </script>
     
@@ -612,7 +614,7 @@
           <ul id="navbar-left" class="nav navbar-nav">
             <!-- show robot status - in progress -->
             <!--<li><a class="btn btn-default btn-lg disabled" id="infoping">-</a></li>-->
-            <!--<li><a class="btn btn-default btn-lg disabled" id="infobattery">0%</a></li>-->
+            <li><a class="btn btn-default btn-lg disabled" id="infobattery">??%</a></li>
             <!--<li><a class="btn btn-default btn-lg disabled" id="infoautonomy">-</a></li>-->
             
             <!--<li class="active"><a href="#">Home</a></li>-->
