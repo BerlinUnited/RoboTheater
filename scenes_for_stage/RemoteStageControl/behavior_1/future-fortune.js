@@ -9,6 +9,13 @@ pageData =
     {"type":"non-blocking", "title":"Head right", "actions":[{"service":"ALBehaviorManager", "call":["startBehavior","theaterhelpers/fixHeadRight"]}],"color":"white"},
     
     // experimental
+    /*
+    {"type":"non-blocking", "title":"Reset People", "actions":[{"service":"ALPeoplePerception", "call":["resetPopulation"]}], "sync":true, "color":"white"},
+    {"type":"non-blocking", "title":"Look left Tracker", "actions":[
+      {"service":"ALPeoplePerception", "call":["resetPopulation"]},
+      {"service":"ALBasicAwareness", "call":["triggerStimulus",0,2,1.8]}
+    ], "sync":true, "color":"white"},
+    */
     //{"type":"non-blocking", "title":"Look left (stimulus)", "actions":[{"service":"ALBasicAwareness", "call":["triggerStimulus",0,2,1.8]}], "sync":true, "color":"white"},
     //{"type":"non-blocking", "title":"Look left (tracker)", "actions":[{"service":"ALTracker", "call":["lookAt",0,2,1.8]}], "sync":true, "color":"white"},
     //{"type":"non-blocking", "title":"Look Around", "actions":[{"service":"ALTracker", "call":["toggleSearch"]}], "sync":true, "color":"white"},
@@ -24,6 +31,11 @@ pageData =
     //{"type":"non-blocking", "title":"BasicAwareness On", "actions":[{"service":"ALBehaviorManager", "call":["startBehavior","theaterhelpers/enableAutonomousMovement"]}],"color":"yellow"},
     {"type":"non-blocking", "title":"Sound On", "actions":[{"service":"ALBehaviorManager", "call":["startBehavior","theaterhelpers/soundOn"]}],"color":"cyan"},
     {"type":"non-blocking", "title":"Sound Off", "actions":[{"service":"ALBehaviorManager", "call":["startBehavior","theaterhelpers/soundOff"]}],"color":"cyan"},
+
+    // better sound control, needs to be adjusted in behaviors
+    //{"type":"non-blocking", "title":"Sound On C", "actions":[{"service":"ALAudioDevice", "call":["setOutputVolume",100]}],"color":"cyan"},
+    //{"type":"non-blocking", "title":"Sound Off C", "actions":[{"service":"ALAudioDevice", "call":["setOutputVolume",0]}],"color":"cyan"},
+    
     {"type":"non-blocking", "title":"Safety On", "actions":[{"service":"ALMotion", "call":["setExternalCollisionProtectionEnabled","All", 1]}],"color":"blue"},
     {"type":"non-blocking", "title":"Safety Off", "actions":[{"service":"ALMotion", "call":["setExternalCollisionProtectionEnabled","All", 0]}],"color":"blue"},
     {"type":"non-blocking", "title":"Rest", "actions":[{"service":"ALMotion", "call":["rest"]}],"color":"red"},
@@ -33,6 +45,7 @@ pageData =
     {"type":"headline", "title":"2 R.U.R.", "items":[
         {"type":"button", "title":"2.1 R.U.R. Screen black (Sound On, Awareness Off)", "actions":[
           {"service":"ALBehaviorManager", "call":["startBehavior","theaterhelpers/soundOn"]},
+          //{"service":"ALAudioDevice", "call":["setOutputVolume",100]},
           {"service":"ALMotion", "call":["setExternalCollisionProtectionEnabled","All", 0]},
           //{"service":"ALBehaviorManager", "call":["startBehavior","theaterhelpers/stopBasicAwareness"]},
           {"service":"ALAnimatedSpeech", "call":["say","$theater_show_image=black $eyes=off $basic_awareness=off"]}
@@ -78,6 +91,7 @@ pageData =
           //{"service":"ALAnimatedSpeech", "call":["say","$theater_show_image=white ^run(animations/Stand/Emotions/Negative/Disappointed_1) ^run(rur_rehearsal/text_1)"]}
           //{"service":"ALBehaviorManager", "call":["startBehavior","theaterhelpers/soundOff"]},
           //{"service":"ALBehaviorManager", "call":["startBehavior","theaterhelpers/reanableBasicAwareness"]},
+          {"service":"ALMotion", "call":["setMoveArmsEnabled", true, true]},
           {"service":"ALAnimatedSpeech", "call":["say","$basic_awareness=on $active_listening=on ^run(theaterhelpers/soundOff) $theater_show_image=white $eyes=blink ^run(animations/Stand/Emotions/Negative/Disappointed_1) ^run(animations/Stand/Emotions/Neutral/Confused_1) \\pau=25000\\"]}
         ]},
         /*
@@ -154,7 +168,9 @@ pageData =
         ]},
         {"type":"non-blocking", "title":"Head left", "actions":[{"service":"ALBehaviorManager", "call":["startBehavior","theaterhelpers/fixHeadLeft"]}]},
         {"type":"non-blocking", "title":"Head center", "actions":[{"service":"ALBehaviorManager", "call":["startBehavior","theaterhelpers/fixHead"]}]},
-        {"type":"non-blocking", "title":"Head right", "actions":[{"service":"ALBehaviorManager", "call":["startBehavior","theaterhelpers/fixHeadRight"]}]}
+        {"type":"non-blocking", "title":"Head right", "actions":[{"service":"ALBehaviorManager", "call":["startBehavior","theaterhelpers/fixHeadRight"]}]},
+        {"type":"non-blocking", "title":"Active Listening ON",  "actions":[{"service":"ALMemory", "call":["raiseEvent","active_listening","on" ]}], "color":"green"},
+        {"type":"non-blocking", "title":"Active Listening OFF", "actions":[{"service":"ALMemory", "call":["raiseEvent","active_listening","off"]}], "color":"red"}
       ]
     },
     {"type":"headline", "title":"4 Dance", "items":[
@@ -282,7 +298,8 @@ pageData =
         {"type":"non-blocking", "title":"RAINBOW", "actions":[{"service":"ALMemory", "call":["raiseEvent","eyes","rainbow"]}]},
         {"type":"non-blocking", "title":"Head left", "actions":[{"service":"ALBehaviorManager", "call":["startBehavior","theaterhelpers/fixHeadLeft"]}]},
         {"type":"non-blocking", "title":"Head center", "actions":[{"service":"ALBehaviorManager", "call":["startBehavior","theaterhelpers/fixHead"]}]},
-        {"type":"non-blocking", "title":"Head right", "actions":[{"service":"ALBehaviorManager", "call":["startBehavior","theaterhelpers/fixHeadRight"]}]}
+        {"type":"non-blocking", "title":"Head right", "actions":[{"service":"ALBehaviorManager", "call":["startBehavior","theaterhelpers/fixHeadRight"]}]},
+        {"type":"button", "title":"Speaking Motion", "actions":[{"service":"ALAnimatedSpeech", "call":["say","$theater_show_image=black $eyes=blink \\pau=60000\\ "]}]}
       ]
     },
     {"type":"headline", "title":"10 5th Element", "items":[
