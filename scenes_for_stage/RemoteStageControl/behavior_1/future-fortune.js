@@ -254,6 +254,7 @@ pageData =
         {"type":"button", "title":"7.1 Video Call Collapse", "actions":[
           {"service":"ALAnimatedSpeech", "call":["say","$theater_show_image=black $eyes=off $basic_awareness=off ^run(theater_playvideo/collapse) $theater_show_image=black"]},
           //{"service":"ALBehaviorManager", "call":["startBehavior","theaterhelpers/stopBasicAwareness"]},
+          // TODO: why is it needed?
           {"service":"ALMotion", "call":["setExternalCollisionProtectionEnabled","All", 1]}
         ]},
         {"type":"button", "title":"7.2 Video Call from Future", "actions":[
